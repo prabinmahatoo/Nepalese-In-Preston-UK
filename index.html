@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Nepalese in Preston (NIP) – a community hub for Nepali people in Preston, UK. Jobs, accommodation, local information, events and community support."
+    content="Nepalese in Preston (NIP) – a community hub for Nepali people in Preston, UK. Jobs, accommodation, local information, visa rules, events and community support."
   />
   <style>
     :root {
@@ -32,8 +32,13 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
       background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
       color: var(--text-main);
       line-height: 1.6;
@@ -145,6 +150,14 @@
       width: 100%;
     }
 
+    .nav-links a.active {
+      color: var(--accent-soft);
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
     .nav-toggle {
       border-radius: var(--radius-pill);
       padding: 6px 10px;
@@ -190,6 +203,31 @@
       .nav-toggle {
         display: none;
       }
+    }
+
+    /* ANNOUNCEMENT BAR */
+
+    .announce-bar {
+      margin-top: 8px;
+      border-radius: var(--radius-md);
+      border: 1px dashed rgba(56, 189, 248, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 6px 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--accent-soft);
+    }
+
+    .announce-bar button {
+      margin-left: auto;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
     }
 
     /* HERO */
@@ -351,6 +389,54 @@
 
     .hero-image-card strong {
       color: var(--accent-soft);
+    }
+
+    .copy-btn {
+      border-radius: var(--radius-pill);
+      padding: 8px 14px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--accent-soft);
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .copy-btn.copied {
+      border-style: solid;
+      border-color: var(--accent-alt);
+      color: var(--accent-alt);
+    }
+
+    /* STATS */
+
+    .stats {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 0.78rem;
+    }
+
+    .stat-card {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 7px 10px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-soft);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
     }
 
     /* SECTIONS */
@@ -619,6 +705,20 @@
 
     /* FAQ */
 
+    .faq-search {
+      margin-bottom: 8px;
+    }
+
+    .faq-search input {
+      width: 100%;
+      padding: 7px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+
     .faq-list details {
       border-radius: var(--radius-md);
       border: 1px solid rgba(148, 163, 184, 0.5);
@@ -715,6 +815,7 @@
         <div class="nav-links">
           <a href="#home">Home</a>
           <a href="#info">Info Centre</a>
+          <a href="#visa">Visa &amp; Immigration</a>
           <a href="#job-board">Job Board</a>
           <a href="#preston">About Preston</a>
           <a href="#events">Events</a>
@@ -723,19 +824,30 @@
           <a href="#contact">Contact</a>
         </div>
 
-        <button class="nav-toggle" id="navToggle">
+        <button class="nav-toggle" id="navToggle" type="button">
           <span>☰</span> Menu
         </button>
       </nav>
       <div class="nav-mobile" id="navMobile">
         <a href="#home">Home</a>
         <a href="#info">Info Centre</a>
+        <a href="#visa">Visa &amp; Immigration</a>
         <a href="#job-board">Job Board</a>
         <a href="#preston">About Preston</a>
         <a href="#events">Events</a>
         <a href="#faq">FAQ</a>
         <a href="#rules">Rules</a>
         <a href="#contact">Contact</a>
+      </div>
+
+      <!-- Announcement bar -->
+      <div class="announce-bar" id="announceBar">
+        <div>🇬🇧 <strong>Visa update:</strong> From 1 January 2027 most Graduate
+          (PSW) visas for bachelor’s and master’s graduates will be <strong>18 months</strong>
+          instead of 2 years. PhD graduates still get 3 years. See the
+          <a href="#visa" style="color:#93c5fd;">Visa &amp; Immigration</a> section for details.
+        </div>
+        <button type="button" aria-label="Close announcement">×</button>
       </div>
     </div>
   </header>
@@ -772,15 +884,38 @@
           </a>
         </div>
 
+        <button
+          class="copy-btn"
+          type="button"
+          data-copy-link="https://chat.whatsapp.com/GyWHyPIHNbH6XWyRVmy4dd"
+        >
+          📋 Copy WhatsApp invite link
+        </button>
+
         <div class="hero-meta">
-          <span><span class="hero-meta-dot"></span> Admin: Prabin Mahat</span>
+          <span><span class="hero-meta-dot"></span> Admin: Prabin Mahato</span>
           <span>Location: Preston, United Kingdom</span>
           <span>Language: Nepali &amp; English</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number" data-count="350">0</div>
+            <div class="stat-label">Members (approx)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-count="120">0</div>
+            <div class="stat-label">Jobs shared</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-count="6">0</div>
+            <div class="stat-label">UK cities connected</div>
+          </div>
         </div>
       </div>
 
       <aside class="hero-image-card">
-        <img src="jobs.jpg" alt="Community and work in Preston (example photo)" />
+        <img src="nip-logo.png" alt="Nepalese in Preston logo with Nepali and UK flags" />
         <strong>What this group is for</strong>
         <p style="margin-top:4px;">
           Whether you are new to Preston or have been here for years, NIP is here to:
@@ -919,6 +1054,156 @@
       </div>
     </section>
 
+    <!-- VISA & IMMIGRATION -->
+    <section id="visa">
+      <div class="section-heading">
+        <div class="section-label">Visa &amp; immigration</div>
+        <h2 class="section-title">Key UK visa information (summary only)</h2>
+        <p class="section-subtitle">
+          Simple summary for Nepali students and workers in Preston. Rules change
+          often – always read the latest guidance on GOV.UK before you apply.
+          This is not legal or immigration advice.
+        </p>
+      </div>
+
+      <div class="two-grid">
+        <div class="card">
+          <h3>Student visa (including dependants)</h3>
+          <ul class="list">
+            <li>
+              <strong>Main idea:</strong> To get a Student visa you usually need:
+              an offer and CAS from a licensed college/university, proof of money
+              for tuition and living costs, and English language ability.
+            </li>
+            <li>
+              <strong>Who can bring dependants:</strong> Your partner and children
+              may be able to apply to come to the UK or stay longer if you are:
+              a government-sponsored student on a course over 6 months, or a
+              full-time student on a postgraduate level course (RQF 7 or above)
+              of at least 9 months. For courses starting on or after 1 January
+              2024 there are extra conditions, so always check the latest rules.
+            </li>
+            <li>
+              <strong>Family members:</strong> Only partner and children count as
+              “dependants”. Parents, brothers, sisters or other relatives cannot
+              be dependants on a Student visa.
+            </li>
+            <li>
+              <strong>Tip:</strong> Keep copies of your CAS, bank statements,
+              tuition fee receipts and BRP/passport scans safely.
+            </li>
+          </ul>
+          <a
+            class="btn btn-ghost"
+            href="https://www.gov.uk/student-visa"
+            target="_blank"
+            rel="noreferrer"
+            style="margin-top:8px;"
+          >
+            🔗 Open Student visa on GOV.UK
+          </a>
+        </div>
+
+        <div class="card">
+          <h3>Graduate visa (Post-Study Work route)</h3>
+          <ul class="list">
+            <li>
+              <strong>What it is:</strong> Lets you stay in the UK after you
+              successfully complete an eligible UK degree or other qualifying
+              course, to work or look for work.
+            </li>
+            <li>
+              <strong>How long you can stay:</strong>
+              <ul class="list">
+                <li>2 years if you apply on or before 31 December 2026.</li>
+                <li>18 months if you apply on or after 1 January 2027.</li>
+                <li>
+                  3 years if you have a PhD or other doctoral qualification (this
+                  does not change).
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Apply from inside the UK:</strong> You must apply from the
+              UK while your Student visa is still valid and after the university
+              confirms you have successfully completed your course.
+            </li>
+            <li>
+              <strong>Work rules:</strong> You can work in most jobs at any
+              skill level (not as a professional sportsperson). You cannot extend
+              a Graduate visa – to stay longer you usually need to switch to
+              another route like Skilled Worker.
+            </li>
+          </ul>
+          <a
+            class="btn btn-ghost"
+            href="https://www.gov.uk/graduate-visa"
+            target="_blank"
+            rel="noreferrer"
+            style="margin-top:8px;"
+          >
+            🔗 Open Graduate visa on GOV.UK
+          </a>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px;">
+        <h3>Indefinite Leave to Remain (ILR) &amp; long residence</h3>
+        <ul class="list">
+          <li>
+            <strong>What ILR is:</strong> “Settlement” – the right to live, work
+            and study in the UK without time limit. It is often needed before
+            applying for British citizenship.
+          </li>
+          <li>
+            <strong>Work visa routes:</strong> On many work visas you can usually
+            apply for ILR after 5 years of lawful residence, if you meet
+            continuous residence rules, salary/financial requirements, English
+            language and (for many routes) the Life in the UK test.
+          </li>
+          <li>
+            <strong>10-year long residence route:</strong> Some people can apply
+            for ILR after 10 years of lawful and continuous residence in the UK,
+            even if they have held different visas during that time.
+          </li>
+          <li>
+            <strong>Future changes:</strong> The UK government has discussed an
+            “earned settlement” system with longer default qualifying periods for
+            many migrants. Check GOV.UK and trusted advice services for the
+            latest updates.
+          </li>
+          <li>
+            <strong>Important:</strong> Every case is different. Always read the
+            official guidance or get help from a qualified immigration adviser
+            before making big decisions.
+          </li>
+        </ul>
+        <div class="tag-pill">
+          📌 Community summary only – not legal or immigration advice.
+        </div>
+        <p class="section-subtitle" style="margin-top:6px;">
+          Official pages:
+          <a
+            href="https://www.gov.uk/indefinite-leave-to-remain"
+            target="_blank"
+            rel="noreferrer"
+            style="color:#93c5fd;"
+          >
+            Check if you can get ILR
+          </a>
+          ·
+          <a
+            href="https://www.gov.uk/long-residence"
+            target="_blank"
+            rel="noreferrer"
+            style="color:#93c5fd;"
+          >
+            ILR after 10 years (long residence)
+          </a>
+        </p>
+      </div>
+    </section>
+
     <!-- JOB BOARD -->
     <section id="job-board">
       <div class="section-heading">
@@ -939,11 +1224,11 @@
               placeholder="Search jobs by title or location…"
             />
           </div>
-          <button class="job-filter-btn active" data-filter="all">All</button>
-          <button class="job-filter-btn" data-filter="hospitality">Hospitality</button>
-          <button class="job-filter-btn" data-filter="warehouse">Warehouse</button>
-          <button class="job-filter-btn" data-filter="care">Care</button>
-          <button class="job-filter-btn" data-filter="other">Other</button>
+          <button class="job-filter-btn active" data-filter="all" type="button">All</button>
+          <button class="job-filter-btn" data-filter="hospitality" type="button">Hospitality</button>
+          <button class="job-filter-btn" data-filter="warehouse" type="button">Warehouse</button>
+          <button class="job-filter-btn" data-filter="care" type="button">Care</button>
+          <button class="job-filter-btn" data-filter="other" type="button">Other</button>
         </div>
 
         <div id="jobList" class="job-list">
@@ -1138,6 +1423,14 @@
       </div>
 
       <div class="card faq-list">
+        <div class="faq-search">
+          <input
+            type="text"
+            id="faqSearch"
+            placeholder="Search in questions… (e.g. business, abuse, official)"
+          />
+        </div>
+
         <details>
           <summary>Who can join the Nepalese in Preston (NIP) WhatsApp group?</summary>
           <p>
@@ -1155,7 +1448,7 @@
         <details>
           <summary>How do I report abuse or problems in the group?</summary>
           <p>
-            Take a screenshot and contact the admin (Prabin Mahat) directly in private message.
+            Take a screenshot and contact the admin (Prabin Mahato) directly in private message.
             Do not start fights in the group; let the admin handle it.
           </p>
         </details>
@@ -1225,7 +1518,9 @@
         <div class="card">
           <h3>Admin details</h3>
           <p>
-            <strong>Admin:</strong> Prabin Mahat<br />
+            <strong>Admin:</strong> Prabin Mahato<br />
+            <strong>Instagram:</strong>
+            <a href="https://instagram.com/Thynoox" target="_blank" rel="noreferrer">@Thynoox</a><br />
             <strong>Group:</strong> Nepalese in Preston (NIP)
           </p>
           <ul class="list">
@@ -1247,6 +1542,13 @@
           >
             🔗 Join / Share WhatsApp Group
           </a>
+          <button
+            class="copy-btn"
+            type="button"
+            data-copy-link="https://chat.whatsapp.com/GyWHyPIHNbH6XWyRVmy4dd"
+          >
+            📋 Copy WhatsApp invite link
+          </button>
           <p class="section-subtitle" style="margin-top:8px; word-break:break-all;">
             Group invite link:<br />
             https://chat.whatsapp.com/GyWHyPIHNbH6XWyRVmy4dd
@@ -1259,7 +1561,7 @@
   <footer>
     <div class="page footer-inner">
       <div>
-        © <span id="year"></span> Nepalese in Preston (NIP) · Admin: Prabin Mahat
+        © <span id="year"></span> Nepalese in Preston (NIP) · Admin: Prabin Mahato
       </div>
       <div>This website is an informal community hub created to support Nepalese in Preston, UK.</div>
     </div>
@@ -1360,6 +1662,18 @@
     scrollTopBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  </script>
-</body>
-</html>
+
+    // active nav link on scroll
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinksAll = document.querySelectorAll(".nav-links a, #navMobile a");
+
+    function setActiveNav() {
+      let currentId = "";
+      const scrollPos = window.scrollY + 120;
+
+      sections.forEach((section) => {
+        if (
+          scrollPos >= section.offsetTop &&
+          scrollPos < section.offsetTop + section.offsetHeight
+        ) {
+         
