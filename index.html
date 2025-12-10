@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Nepalese in Preston (NIP) – a community hub for Nepali people in Preston, UK. Jobs, accommodation, local information, visa rules, events and community support."
+    content="Nepalese in Preston (NIP) – a community hub and WhatsApp group for Nepali people in Preston, UK. Jobs, accommodation, local info, visa guidance and community support."
   />
   <style>
     :root {
@@ -37,8 +37,7 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
       color: var(--text-main);
       line-height: 1.6;
@@ -97,13 +96,14 @@
     }
 
     .brand-logo-wrap {
-      width: 42px;
-      height: 42px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       overflow: hidden;
       background: #e5e7eb;
       border: 2px solid rgba(15, 23, 42, 0.9);
       box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+      flex-shrink: 0;
     }
 
     .brand-logo-wrap img {
@@ -146,16 +146,13 @@
       color: var(--text-main);
     }
 
-    .nav-links a:hover::after {
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
       width: 100%;
     }
 
     .nav-links a.active {
       color: var(--accent-soft);
-    }
-
-    .nav-links a.active::after {
-      width: 100%;
     }
 
     .nav-toggle {
@@ -207,12 +204,12 @@
 
     /* ANNOUNCEMENT BAR */
 
-    .announce-bar {
-      margin-top: 8px;
+    .announce {
+      margin-top: 6px;
       border-radius: var(--radius-md);
-      border: 1px dashed rgba(56, 189, 248, 0.7);
-      background: rgba(15, 23, 42, 0.9);
-      padding: 6px 10px;
+      border: 1px solid rgba(56, 189, 248, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      padding: 8px 10px;
       display: flex;
       align-items: flex-start;
       gap: 8px;
@@ -220,14 +217,17 @@
       color: var(--accent-soft);
     }
 
-    .announce-bar button {
+    .announce strong {
+      color: #e5f3ff;
+    }
+
+    .announce-close {
       margin-left: auto;
       border: none;
       background: transparent;
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 1rem;
-      line-height: 1;
+      font-size: 0.95rem;
     }
 
     /* HERO */
@@ -333,6 +333,26 @@
       background: #020617;
     }
 
+    .copy-btn {
+      border-radius: var(--radius-pill);
+      padding: 8px 14px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--accent-soft);
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .copy-btn.copied {
+      border-style: solid;
+      border-color: var(--accent-alt);
+      color: var(--accent-alt);
+    }
+
     @media (min-width: 480px) {
       .hero-cta {
         flex-direction: row;
@@ -389,54 +409,6 @@
 
     .hero-image-card strong {
       color: var(--accent-soft);
-    }
-
-    .copy-btn {
-      border-radius: var(--radius-pill);
-      padding: 8px 14px;
-      border: 1px dashed rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--accent-soft);
-      font-size: 0.8rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .copy-btn.copied {
-      border-style: solid;
-      border-color: var(--accent-alt);
-      color: var(--accent-alt);
-    }
-
-    /* STATS */
-
-    .stats {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      font-size: 0.78rem;
-    }
-
-    .stat-card {
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background: rgba(15, 23, 42, 0.9);
-      padding: 7px 10px;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--accent-soft);
-    }
-
-    .stat-label {
-      color: var(--text-muted);
     }
 
     /* SECTIONS */
@@ -705,20 +677,6 @@
 
     /* FAQ */
 
-    .faq-search {
-      margin-bottom: 8px;
-    }
-
-    .faq-search input {
-      width: 100%;
-      padding: 7px 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text-main);
-      font-size: 0.9rem;
-    }
-
     .faq-list details {
       border-radius: var(--radius-md);
       border: 1px solid rgba(148, 163, 184, 0.5);
@@ -737,6 +695,34 @@
     .faq-list p {
       margin-top: 4px;
       color: var(--text-muted);
+    }
+
+    /* USEFUL LINKS */
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 720px) {
+      .links-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.8rem;
+      color: var(--accent-soft);
+      margin: 2px 4px 2px 0;
+      white-space: nowrap;
     }
 
     /* FLOATING BUTTONS */
@@ -799,6 +785,19 @@
         align-items: center;
       }
     }
+
+    /* SCROLL REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+    }
+
+    .reveal-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -807,6 +806,7 @@
       <nav class="nav">
         <div class="brand">
           <div class="brand-logo-wrap">
+            <!-- use your logo file here -->
             <img src="nip-logo.png" alt="Nepalese in Preston (NIP) logo" />
           </div>
           <div class="brand-text">Nepalese in Preston (NIP)</div>
@@ -840,21 +840,21 @@
         <a href="#contact">Contact</a>
       </div>
 
-      <!-- Announcement bar -->
-      <div class="announce-bar" id="announceBar">
-        <div>🇬🇧 <strong>Visa update:</strong> From 1 January 2027 most Graduate
-          (PSW) visas for bachelor’s and master’s graduates will be <strong>18 months</strong>
-          instead of 2 years. PhD graduates still get 3 years. See the
-          <a href="#visa" style="color:#93c5fd;">Visa &amp; Immigration</a> section for details.
+      <!-- announcement bar -->
+      <div class="announce" id="announceBar">
+        <div>📣 <strong>Important visa update:</strong> Graduate (PSW) visas are now
+          normally <strong>2 years</strong> (or <strong>3 years</strong> for PhD). For
+          future changes, always check official GOV.UK pages. See the
+          <a href="#visa" style="color:#93c5fd;">Visa &amp; Immigration</a> section.
         </div>
-        <button type="button" aria-label="Close announcement">×</button>
+        <button class="announce-close" type="button" aria-label="Close announcement">✕</button>
       </div>
     </div>
   </header>
 
   <main class="page">
     <!-- HOME -->
-    <section id="home" class="hero">
+    <section id="home" class="hero reveal">
       <div>
         <div class="tagline">
           <span class="tag-dot"></span>
@@ -897,25 +897,10 @@
           <span>Location: Preston, United Kingdom</span>
           <span>Language: Nepali &amp; English</span>
         </div>
-
-        <div class="stats">
-          <div class="stat-card">
-            <div class="stat-number" data-count="350">0</div>
-            <div class="stat-label">Members (approx)</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number" data-count="120">0</div>
-            <div class="stat-label">Jobs shared</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number" data-count="6">0</div>
-            <div class="stat-label">UK cities connected</div>
-          </div>
-        </div>
       </div>
 
       <aside class="hero-image-card">
-        <img src="nip-logo.png" alt="Nepalese in Preston logo with Nepali and UK flags" />
+        <img src="jobs.jpg" alt="Community and work in Preston (example photo)" />
         <strong>What this group is for</strong>
         <p style="margin-top:4px;">
           Whether you are new to Preston or have been here for years, NIP is here to:
@@ -930,7 +915,7 @@
     </section>
 
     <!-- INFO CENTRE -->
-    <section id="info">
+    <section id="info" class="reveal">
       <div class="section-heading">
         <div class="section-label">Information centre</div>
         <h2 class="section-title">Practical information for living in Preston</h2>
@@ -1055,42 +1040,43 @@
     </section>
 
     <!-- VISA & IMMIGRATION -->
-    <section id="visa">
+    <section id="visa" class="reveal">
       <div class="section-heading">
         <div class="section-label">Visa &amp; immigration</div>
-        <h2 class="section-title">Key UK visa information (summary only)</h2>
+        <h2 class="section-title">Student, Graduate (PSW) &amp; ILR – community summary</h2>
         <p class="section-subtitle">
-          Simple summary for Nepali students and workers in Preston. Rules change
-          often – always read the latest guidance on GOV.UK before you apply.
-          This is not legal or immigration advice.
+          This is a simple explanation for Nepali students and workers in Preston,
+          based on information from GOV.UK. Rules change – always read the latest
+          guidance on the official website before you apply. This is not legal advice.
         </p>
       </div>
 
       <div class="two-grid">
         <div class="card">
-          <h3>Student visa (including dependants)</h3>
+          <h3>Student visa – main points</h3>
           <ul class="list">
             <li>
-              <strong>Main idea:</strong> To get a Student visa you usually need:
-              an offer and CAS from a licensed college/university, proof of money
-              for tuition and living costs, and English language ability.
+              <strong>Who can apply:</strong> Usually 16+ with an offer and CAS from a
+              licensed college or university, enough money for fees and living costs,
+              and required English level. :contentReference[oaicite:1]{index=1}
             </li>
             <li>
-              <strong>Who can bring dependants:</strong> Your partner and children
-              may be able to apply to come to the UK or stay longer if you are:
-              a government-sponsored student on a course over 6 months, or a
-              full-time student on a postgraduate level course (RQF 7 or above)
-              of at least 9 months. For courses starting on or after 1 January
-              2024 there are extra conditions, so always check the latest rules.
+              <strong>Length of stay:</strong> If you are 18+ and your course is at
+              degree level, you can usually stay up to 5 years on a Student visa.
+              Below degree level is normally up to 2 years. :contentReference[oaicite:2]{index=2}
             </li>
             <li>
-              <strong>Family members:</strong> Only partner and children count as
-              “dependants”. Parents, brothers, sisters or other relatives cannot
-              be dependants on a Student visa.
+              <strong>Dependants (partner &amp; children):</strong> You may be able
+              to bring them only in limited cases – for example government-sponsored
+              students on longer courses, or certain postgraduate courses of at least
+              9 months. Always check the “Your partner and children” page before
+              applying. :contentReference[oaicite:3]{index=3}
             </li>
             <li>
-              <strong>Tip:</strong> Keep copies of your CAS, bank statements,
-              tuition fee receipts and BRP/passport scans safely.
+              <strong>Work during studies:</strong> Many degree-level students can
+              work part-time in term and full-time in vacations, but there are limits
+              (for example, no self-employment or professional sports). Your visa
+              letter will explain what you can and cannot do. :contentReference[oaicite:4]{index=4}
             </li>
           </ul>
           <a
@@ -1100,39 +1086,34 @@
             rel="noreferrer"
             style="margin-top:8px;"
           >
-            🔗 Open Student visa on GOV.UK
+            🔗 Official Student visa page
           </a>
         </div>
 
         <div class="card">
-          <h3>Graduate visa (Post-Study Work route)</h3>
+          <h3>Graduate visa (post-study / PSW)</h3>
           <ul class="list">
             <li>
-              <strong>What it is:</strong> Lets you stay in the UK after you
-              successfully complete an eligible UK degree or other qualifying
-              course, to work or look for work.
+              <strong>What it is:</strong> Lets you stay in the UK after successfully
+              completing an eligible UK course, to work or look for work. You must
+              apply from inside the UK while your Student visa is still valid. :contentReference[oaicite:5]{index=5}
             </li>
             <li>
-              <strong>How long you can stay:</strong>
-              <ul class="list">
-                <li>2 years if you apply on or before 31 December 2026.</li>
-                <li>18 months if you apply on or after 1 January 2027.</li>
-                <li>
-                  3 years if you have a PhD or other doctoral qualification (this
-                  does not change).
-                </li>
-              </ul>
+              <strong>How long you can stay:</strong> A Graduate visa normally lasts
+              <strong>2 years</strong>, or <strong>3 years</strong> if you completed
+              a PhD or other doctoral qualification. :contentReference[oaicite:6]{index=6}
             </li>
             <li>
-              <strong>Apply from inside the UK:</strong> You must apply from the
-              UK while your Student visa is still valid and after the university
-              confirms you have successfully completed your course.
+              <strong>Future change already announced:</strong> Government guidance
+              states that applications made on or after <strong>1 January 2027</strong>
+              for most degree-level courses will get <strong>18 months</strong> instead
+              of 2 years, while PhD graduates will still get 3 years. :contentReference[oaicite:7]{index=7}
             </li>
             <li>
-              <strong>Work rules:</strong> You can work in most jobs at any
-              skill level (not as a professional sportsperson). You cannot extend
-              a Graduate visa – to stay longer you usually need to switch to
-              another route like Skilled Worker.
+              <strong>Work rules:</strong> No sponsor required; you can do most jobs
+              at any skill level, except certain jobs such as professional sport.
+              The visa cannot be extended – you must switch to another route like
+              Skilled Worker if you want to stay longer. :contentReference[oaicite:8]{index=8}
             </li>
           </ul>
           <a
@@ -1142,47 +1123,47 @@
             rel="noreferrer"
             style="margin-top:8px;"
           >
-            🔗 Open Graduate visa on GOV.UK
+            🔗 Official Graduate visa page
           </a>
         </div>
       </div>
 
       <div class="card" style="margin-top:12px;">
-        <h3>Indefinite Leave to Remain (ILR) &amp; long residence</h3>
+        <h3>Indefinite Leave to Remain (ILR) / settlement</h3>
         <ul class="list">
           <li>
-            <strong>What ILR is:</strong> “Settlement” – the right to live, work
-            and study in the UK without time limit. It is often needed before
-            applying for British citizenship.
+            <strong>What ILR is:</strong> Permission to live, work and study in the
+            UK without time limit. ILR is often needed before applying for British
+            citizenship. :contentReference[oaicite:9]{index=9}
           </li>
           <li>
-            <strong>Work visa routes:</strong> On many work visas you can usually
-            apply for ILR after 5 years of lawful residence, if you meet
-            continuous residence rules, salary/financial requirements, English
-            language and (for many routes) the Life in the UK test.
+            <strong>Routes to ILR:</strong> There are different ways, for example
+            after several years on a work visa, family route, protection route or
+            long residence (usually 10 years of lawful stay). :contentReference[oaicite:10]{index=10}
           </li>
           <li>
-            <strong>10-year long residence route:</strong> Some people can apply
-            for ILR after 10 years of lawful and continuous residence in the UK,
-            even if they have held different visas during that time.
+            <strong>Continuous residence:</strong> You normally must show a certain
+            number of years in the UK without long gaps or periods without valid
+            permission to stay. :contentReference[oaicite:11]{index=11}
           </li>
           <li>
-            <strong>Future changes:</strong> The UK government has discussed an
-            “earned settlement” system with longer default qualifying periods for
-            many migrants. Check GOV.UK and trusted advice services for the
-            latest updates.
-          </li>
-          <li>
-            <strong>Important:</strong> Every case is different. Always read the
-            official guidance or get help from a qualified immigration adviser
-            before making big decisions.
+            <strong>Earned settlement proposals:</strong> The government has
+            announced plans to move towards a system where many people qualify
+            for settlement after around <strong>10 years</strong>, with possible
+            reductions for those who meet contribution and integration tests. These
+            proposals are still going through consultation and not all rules are
+            in force yet. :contentReference[oaicite:12]{index=12}
           </li>
         </ul>
+        <p class="section-subtitle" style="margin-top:6px;">
+          Always read the latest ILR pages on GOV.UK or speak to a qualified immigration
+          adviser before making big decisions.
+        </p>
         <div class="tag-pill">
           📌 Community summary only – not legal or immigration advice.
         </div>
         <p class="section-subtitle" style="margin-top:6px;">
-          Official pages:
+          Official links:
           <a
             href="https://www.gov.uk/indefinite-leave-to-remain"
             target="_blank"
@@ -1193,19 +1174,19 @@
           </a>
           ·
           <a
-            href="https://www.gov.uk/long-residence"
+            href="https://www.gov.uk/browse/visas-immigration/settle-in-the-uk"
             target="_blank"
             rel="noreferrer"
             style="color:#93c5fd;"
           >
-            ILR after 10 years (long residence)
+            Settle in the UK
           </a>
         </p>
       </div>
     </section>
 
     <!-- JOB BOARD -->
-    <section id="job-board">
+    <section id="job-board" class="reveal">
       <div class="section-heading">
         <div class="section-label">Job board</div>
         <h2 class="section-title">Sample job board for Nepalese in Preston</h2>
@@ -1288,7 +1269,7 @@
     </section>
 
     <!-- PRESTON / HISTORY / NEARBY -->
-    <section id="preston">
+    <section id="preston" class="reveal">
       <div class="section-heading">
         <div class="section-label">Preston &amp; nearby areas</div>
         <h2 class="section-title">About Preston and surrounding cities</h2>
@@ -1394,7 +1375,7 @@
     </section>
 
     <!-- EVENTS -->
-    <section id="events">
+    <section id="events" class="reveal">
       <div class="section-heading">
         <div class="section-label">Events</div>
         <h2 class="section-title">Upcoming events</h2>
@@ -1416,21 +1397,13 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq">
+    <section id="faq" class="reveal">
       <div class="section-heading">
         <div class="section-label">FAQ</div>
         <h2 class="section-title">Frequently asked questions</h2>
       </div>
 
       <div class="card faq-list">
-        <div class="faq-search">
-          <input
-            type="text"
-            id="faqSearch"
-            placeholder="Search in questions… (e.g. business, abuse, official)"
-          />
-        </div>
-
         <details>
           <summary>Who can join the Nepalese in Preston (NIP) WhatsApp group?</summary>
           <p>
@@ -1462,8 +1435,42 @@
       </div>
     </section>
 
+    <!-- USEFUL LINKS -->
+    <section class="reveal">
+      <div class="section-heading">
+        <div class="section-label">Helpful links</div>
+        <h2 class="section-title">Official websites &amp; local services</h2>
+        <p class="section-subtitle">
+          Quick links you can tap to open in a new tab and share in the group.
+        </p>
+      </div>
+      <div class="links-grid">
+        <div class="card">
+          <h3>Visas &amp; immigration</h3>
+          <a class="link-chip" href="https://www.gov.uk/student-visa" target="_blank" rel="noreferrer">🎓 Student visa</a>
+          <a class="link-chip" href="https://www.gov.uk/graduate-visa" target="_blank" rel="noreferrer">📄 Graduate visa</a>
+          <a class="link-chip" href="https://www.gov.uk/indefinite-leave-to-remain" target="_blank" rel="noreferrer">🏡 ILR</a>
+          <a class="link-chip" href="https://www.gov.uk/browse/visas-immigration" target="_blank" rel="noreferrer">🇬🇧 All visa types</a>
+        </div>
+        <div class="card">
+          <h3>Health &amp; safety</h3>
+          <a class="link-chip" href="https://www.nhs.uk" target="_blank" rel="noreferrer">🏥 NHS</a>
+          <a class="link-chip" href="https://111.nhs.uk" target="_blank" rel="noreferrer">📞 NHS 111 online</a>
+          <a class="link-chip" href="https://www.lancashire.police.uk" target="_blank" rel="noreferrer">👮 Lancashire Police</a>
+          <a class="link-chip" href="https://www.gov.uk/report-suspicious-email" target="_blank" rel="noreferrer">⚠️ Report scams</a>
+        </div>
+        <div class="card">
+          <h3>Local area</h3>
+          <a class="link-chip" href="https://www.preston.gov.uk" target="_blank" rel="noreferrer">🏛️ Preston Council</a>
+          <a class="link-chip" href="https://www.uclan.ac.uk" target="_blank" rel="noreferrer">🎓 UCLan</a>
+          <a class="link-chip" href="https://www.stagecoachbus.com" target="_blank" rel="noreferrer">🚌 Bus info</a>
+          <a class="link-chip" href="https://www.nationalrail.co.uk" target="_blank" rel="noreferrer">🚆 Train times</a>
+        </div>
+      </div>
+    </section>
+
     <!-- RULES / WARNING -->
-    <section id="rules">
+    <section id="rules" class="reveal">
       <div class="section-heading">
         <div class="section-label">Rules</div>
         <h2 class="section-title">Group rules &amp; behaviour policy</h2>
@@ -1504,7 +1511,7 @@
     </section>
 
     <!-- CONTACT / ADMIN -->
-    <section id="contact">
+    <section id="contact" class="reveal">
       <div class="section-heading">
         <div class="section-label">Contact</div>
         <h2 class="section-title">Admin &amp; group contact</h2>
@@ -1546,8 +1553,9 @@
             class="copy-btn"
             type="button"
             data-copy-link="https://chat.whatsapp.com/GyWHyPIHNbH6XWyRVmy4dd"
+            style="margin-top:10px;"
           >
-            📋 Copy WhatsApp invite link
+            📋 Copy invite link
           </button>
           <p class="section-subtitle" style="margin-top:8px; word-break:break-all;">
             Group invite link:<br />
@@ -1577,7 +1585,7 @@
   >
     <span>🟢</span>
   </a>
-  <div class="scroll-top" id="scrollTopBtn" aria-label="Back to top">↑</div>
+  <button class="scroll-top" id="scrollTopBtn" type="button" aria-label="Back to top">↑</button>
 
   <script>
     // mobile nav
@@ -1663,6 +1671,40 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
+    // copy WhatsApp link buttons
+    const copyButtons = document.querySelectorAll(".copy-btn");
+    copyButtons.forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const link = btn.getAttribute("data-copy-link");
+        const original = btn.textContent;
+        try {
+          await navigator.clipboard.writeText(link);
+          btn.classList.add("copied");
+          btn.textContent = "✅ Link copied";
+        } catch (err) {
+          alert("Could not copy automatically. Link: " + link);
+        }
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = original;
+        }, 2000);
+      });
+    });
+
+    // announcement bar close (saved in localStorage)
+    const announceBar = document.getElementById("announceBar");
+    const announceClose = document.querySelector(".announce-close");
+    if (announceBar && announceClose) {
+      const closed = localStorage.getItem("nip_announce_closed");
+      if (closed === "1") {
+        announceBar.style.display = "none";
+      }
+      announceClose.addEventListener("click", () => {
+        announceBar.style.display = "none";
+        localStorage.setItem("nip_announce_closed", "1");
+      });
+    }
+
     // active nav link on scroll
     const sections = document.querySelectorAll("main section[id]");
     const navLinksAll = document.querySelectorAll(".nav-links a, #navMobile a");
@@ -1676,4 +1718,35 @@
           scrollPos >= section.offsetTop &&
           scrollPos < section.offsetTop + section.offsetHeight
         ) {
-         
+          currentId = section.id;
+        }
+      });
+
+      navLinksAll.forEach((link) => {
+        const href = link.getAttribute("href") || "";
+        if (!href.startsWith("#")) return;
+        const id = href.slice(1);
+        link.classList.toggle("active", id === currentId);
+      });
+    }
+
+    window.addEventListener("scroll", setActiveNav);
+    setActiveNav();
+
+    // scroll reveal animations
+    const revealEls = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    revealEls.forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
