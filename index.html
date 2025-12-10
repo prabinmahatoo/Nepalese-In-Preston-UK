@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Nepalese in Preston (NIP) – a community hub and WhatsApp group for Nepali people in Preston, UK. Jobs, accommodation, local info, visa guidance and community support."
+    content="Nepalese in Preston (NIP) – a community hub and WhatsApp group for Nepali people in Preston, UK. Jobs, accommodation, visa guidance, local info and community support."
   />
   <style>
     :root {
@@ -725,6 +725,115 @@
       white-space: nowrap;
     }
 
+    /* STUDENT STORIES SLIDER */
+
+    .stories-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stories-track {
+      position: relative;
+      min-height: 150px;
+    }
+
+    .story-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateX(16px);
+      transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+    }
+
+    .story-slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .story-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .stories-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      gap: 8px;
+    }
+
+    .stories-arrows {
+      display: flex;
+      gap: 6px;
+    }
+
+    .stories-btn {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .stories-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .stories-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .stories-dot.active {
+      background: var(--accent-soft);
+      border-color: var(--accent-soft);
+    }
+
+    /* NEPALI LANGUAGE SECTION */
+
+    .lang-toggle {
+      display: inline-flex;
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      margin-bottom: 8px;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .lang-btn {
+      border-radius: var(--radius-pill);
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: radial-gradient(circle at top left, #2563eb, #38bdf8);
+      color: #f9fafb;
+    }
+
+    .lang-panel {
+      display: none;
+      margin-top: 6px;
+      font-size: 0.9rem;
+    }
+
+    .lang-panel.active {
+      display: block;
+    }
+
     /* FLOATING BUTTONS */
 
     .float-wa {
@@ -806,7 +915,7 @@
       <nav class="nav">
         <div class="brand">
           <div class="brand-logo-wrap">
-            <!-- use your logo file here -->
+            <!-- make sure nip-logo.png is in the same folder -->
             <img src="nip-logo.png" alt="Nepalese in Preston (NIP) logo" />
           </div>
           <div class="brand-text">Nepalese in Preston (NIP)</div>
@@ -816,10 +925,12 @@
           <a href="#home">Home</a>
           <a href="#info">Info Centre</a>
           <a href="#visa">Visa &amp; Immigration</a>
+          <a href="#stories">Student Stories</a>
           <a href="#job-board">Job Board</a>
           <a href="#preston">About Preston</a>
           <a href="#events">Events</a>
           <a href="#faq">FAQ</a>
+          <a href="#nepali-info">नेपाली Info</a>
           <a href="#rules">Rules</a>
           <a href="#contact">Contact</a>
         </div>
@@ -832,19 +943,21 @@
         <a href="#home">Home</a>
         <a href="#info">Info Centre</a>
         <a href="#visa">Visa &amp; Immigration</a>
+        <a href="#stories">Student Stories</a>
         <a href="#job-board">Job Board</a>
         <a href="#preston">About Preston</a>
         <a href="#events">Events</a>
         <a href="#faq">FAQ</a>
+        <a href="#nepali-info">नेपाली Info</a>
         <a href="#rules">Rules</a>
         <a href="#contact">Contact</a>
       </div>
 
       <!-- announcement bar -->
       <div class="announce" id="announceBar">
-        <div>📣 <strong>Important visa update:</strong> Graduate (PSW) visas are now
-          normally <strong>2 years</strong> (or <strong>3 years</strong> for PhD). For
-          future changes, always check official GOV.UK pages. See the
+        <div>📣 <strong>Important visa update:</strong> Graduate visas are normally
+          <strong>2 years</strong> (or <strong>3 years</strong> for PhD). For future
+          changes, always check official GOV.UK pages. See the
           <a href="#visa" style="color:#93c5fd;">Visa &amp; Immigration</a> section.
         </div>
         <button class="announce-close" type="button" aria-label="Close announcement">✕</button>
@@ -1045,9 +1158,9 @@
         <div class="section-label">Visa &amp; immigration</div>
         <h2 class="section-title">Student, Graduate (PSW) &amp; ILR – community summary</h2>
         <p class="section-subtitle">
-          This is a simple explanation for Nepali students and workers in Preston,
-          based on information from GOV.UK. Rules change – always read the latest
-          guidance on the official website before you apply. This is not legal advice.
+          This is a simple explanation for Nepali students and workers in Preston, based on
+          information from official GOV.UK guidance. Rules can change – always read the latest
+          pages on GOV.UK before you apply. This is not legal advice.
         </p>
       </div>
 
@@ -1056,27 +1169,25 @@
           <h3>Student visa – main points</h3>
           <ul class="list">
             <li>
-              <strong>Who can apply:</strong> Usually 16+ with an offer and CAS from a
-              licensed college or university, enough money for fees and living costs,
-              and required English level. :contentReference[oaicite:1]{index=1}
+              <strong>Who can apply:</strong> Usually age 16+ with an unconditional offer
+              and CAS from a licensed education provider, proof of enough money for
+              tuition and living costs, and required English language level.
             </li>
             <li>
-              <strong>Length of stay:</strong> If you are 18+ and your course is at
-              degree level, you can usually stay up to 5 years on a Student visa.
-              Below degree level is normally up to 2 years. :contentReference[oaicite:2]{index=2}
+              <strong>Length of stay:</strong> For adults on degree-level courses you can
+              normally stay up to 5 years on a Student visa. Below degree level is
+              usually up to 2 years.
             </li>
             <li>
-              <strong>Dependants (partner &amp; children):</strong> You may be able
-              to bring them only in limited cases – for example government-sponsored
-              students on longer courses, or certain postgraduate courses of at least
-              9 months. Always check the “Your partner and children” page before
-              applying. :contentReference[oaicite:3]{index=3}
+              <strong>Dependants (partner &amp; children):</strong> You may be able to
+              bring them only in certain situations – for example some government-sponsored
+              students or specific postgraduate courses of at least 9 months. Always check
+              the “Your partner and children” section on the Student visa page.
             </li>
             <li>
-              <strong>Work during studies:</strong> Many degree-level students can
-              work part-time in term and full-time in vacations, but there are limits
-              (for example, no self-employment or professional sports). Your visa
-              letter will explain what you can and cannot do. :contentReference[oaicite:4]{index=4}
+              <strong>Work during studies:</strong> Many degree-level students can work
+              limited hours in term time and more during holidays, but there are strict
+              rules (for example, no self-employment or professional sports).
             </li>
           </ul>
           <a
@@ -1091,29 +1202,29 @@
         </div>
 
         <div class="card">
-          <h3>Graduate visa (post-study / PSW)</h3>
+          <h3>Graduate visa (post-study work)</h3>
           <ul class="list">
             <li>
-              <strong>What it is:</strong> Lets you stay in the UK after successfully
-              completing an eligible UK course, to work or look for work. You must
-              apply from inside the UK while your Student visa is still valid. :contentReference[oaicite:5]{index=5}
+              <strong>What it is:</strong> Lets you stay in the UK after you successfully
+              complete an eligible UK course, to work or look for work. You must apply
+              from inside the UK while your Student visa is still valid.
             </li>
             <li>
-              <strong>How long you can stay:</strong> A Graduate visa normally lasts
-              <strong>2 years</strong>, or <strong>3 years</strong> if you completed
-              a PhD or other doctoral qualification. :contentReference[oaicite:6]{index=6}
+              <strong>How long you can stay now:</strong> A Graduate visa currently lasts
+              up to <strong>2 years</strong>, or <strong>3 years</strong> if you completed
+              a PhD or other doctoral qualification.
             </li>
             <li>
-              <strong>Future change already announced:</strong> Government guidance
-              states that applications made on or after <strong>1 January 2027</strong>
-              for most degree-level courses will get <strong>18 months</strong> instead
-              of 2 years, while PhD graduates will still get 3 years. :contentReference[oaicite:7]{index=7}
+              <strong>Change already announced:</strong> For most bachelor’s and master’s
+              graduates, applications made on or after <strong>1 January 2027</strong> will
+              usually get <strong>18 months</strong> instead of 2 years. PhD graduates will
+              still normally get 3 years.
             </li>
             <li>
-              <strong>Work rules:</strong> No sponsor required; you can do most jobs
-              at any skill level, except certain jobs such as professional sport.
-              The visa cannot be extended – you must switch to another route like
-              Skilled Worker if you want to stay longer. :contentReference[oaicite:8]{index=8}
+              <strong>Work rules:</strong> You do not need a sponsor and can do most kinds
+              of work (but not as a professional sportsperson). The Graduate visa cannot
+              be extended – if you want to stay longer you must switch to another route
+              such as Skilled Worker.
             </li>
           </ul>
           <a
@@ -1132,31 +1243,28 @@
         <h3>Indefinite Leave to Remain (ILR) / settlement</h3>
         <ul class="list">
           <li>
-            <strong>What ILR is:</strong> Permission to live, work and study in the
-            UK without time limit. ILR is often needed before applying for British
-            citizenship. :contentReference[oaicite:9]{index=9}
+            <strong>What ILR is:</strong> Permission to live, work and study in the UK
+            without time limit. Many people need ILR before applying for British
+            citizenship.
           </li>
           <li>
-            <strong>Routes to ILR:</strong> There are different ways, for example
-            after several years on a work visa, family route, protection route or
-            long residence (usually 10 years of lawful stay). :contentReference[oaicite:10]{index=10}
+            <strong>Routes to ILR:</strong> There are different routes – for example after
+            several years on an eligible work visa, family route, protection route or
+            long residence (usually 10 years of lawful stay).
           </li>
           <li>
-            <strong>Continuous residence:</strong> You normally must show a certain
-            number of years in the UK without long gaps or periods without valid
-            permission to stay. :contentReference[oaicite:11]{index=11}
+            <strong>Continuous residence:</strong> You normally must show a certain number
+            of years in the UK without long absences and with valid permission to stay.
           </li>
           <li>
-            <strong>Earned settlement proposals:</strong> The government has
-            announced plans to move towards a system where many people qualify
-            for settlement after around <strong>10 years</strong>, with possible
-            reductions for those who meet contribution and integration tests. These
-            proposals are still going through consultation and not all rules are
-            in force yet. :contentReference[oaicite:12]{index=12}
+            <strong>Planned changes:</strong> The government has talked about moving
+            towards an “earned settlement” system where many people qualify after around
+            10 years, with reductions for people who meet contribution and integration
+            requirements. Some changes are still going through consultation.
           </li>
         </ul>
         <p class="section-subtitle" style="margin-top:6px;">
-          Always read the latest ILR pages on GOV.UK or speak to a qualified immigration
+          Always read the latest ILR guidance on GOV.UK or speak to a qualified immigration
           adviser before making big decisions.
         </p>
         <div class="tag-pill">
@@ -1182,6 +1290,78 @@
             Settle in the UK
           </a>
         </p>
+      </div>
+    </section>
+
+    <!-- STUDENT STORIES -->
+    <section id="stories" class="reveal">
+      <div class="section-heading">
+        <div class="section-label">Student stories</div>
+        <h2 class="section-title">Experiences from Nepalese students in Preston</h2>
+        <p class="section-subtitle">
+          Short stories and tips shared by students. You can later replace these with real
+          stories from NIP members.
+        </p>
+      </div>
+
+      <div class="card stories-card">
+        <div class="stories-track">
+          <article class="story-slide active" data-index="0">
+            <div class="story-meta">🎓 BSc Computing · UCLan · First year</div>
+            <h3>“Part-time work and studies can balance nicely”</h3>
+            <p class="section-subtitle" style="margin-top:4px;">
+              I work around 16 hours per week in a restaurant and focus on classes in the day.
+              Joining the NIP group helped me find my first job and room share. My tip: fix your
+              timetable first, then look for jobs that match your free time.
+            </p>
+          </article>
+
+          <article class="story-slide" data-index="1">
+            <div class="story-meta">🎓 MSc Nursing · UCLan · Graduate visa</div>
+            <h3>“Graduate visa gave me time to find an NHS job”</h3>
+            <p class="section-subtitle" style="margin-top:4px;">
+              After finishing my course I moved to the Graduate visa. I did care-home shifts
+              first, then applied for NHS roles. Keep your CV ready, collect references during
+              your Student visa, and always double-check GOV.UK before planning your next visa.
+            </p>
+          </article>
+
+          <article class="story-slide" data-index="2">
+            <div class="story-meta">🎓 BA Business · UCLan · Final year</div>
+            <h3>“Preston is cheaper than many UK cities”</h3>
+            <p class="section-subtitle" style="margin-top:4px;">
+              Rent and travel costs are usually lower than big cities like Manchester or London.
+              Sharing a house with other Nepali students, cooking at home and using student
+              discounts makes life easier. The NIP group is great for finding new flatmates when
+              someone moves out.
+            </p>
+          </article>
+        </div>
+
+        <div class="stories-controls">
+          <div class="stories-arrows">
+            <button class="stories-btn" id="storyPrev" type="button">◀ Prev</button>
+            <button class="stories-btn" id="storyNext" type="button">Next ▶</button>
+          </div>
+          <div class="stories-dots" id="storyDots">
+            <button class="stories-dot active" data-index="0" aria-label="Story 1"></button>
+            <button class="stories-dot" data-index="1" aria-label="Story 2"></button>
+            <button class="stories-dot" data-index="2" aria-label="Story 3"></button>
+          </div>
+        </div>
+
+        <div class="section-subtitle" style="margin-top:10px; font-size:0.82rem;">
+          Want your story here? Click below and send your student story to the admin on WhatsApp.
+        </div>
+        <a
+          class="btn btn-ghost"
+          href="https://wa.me/?text=Namaste%20Prabin%20dai,%20I%20want%20to%20share%20my%20student%20story%20for%20the%20NIP%20website."
+          target="_blank"
+          rel="noreferrer"
+          style="margin-top:8px;"
+        >
+          ✍️ Share your story via WhatsApp
+        </a>
       </div>
     </section>
 
@@ -1432,6 +1612,57 @@
             medical issues always check official UK government or NHS websites.
           </p>
         </details>
+      </div>
+    </section>
+
+    <!-- NEPALI LANGUAGE MINI SECTION -->
+    <section id="nepali-info" class="reveal">
+      <div class="section-heading">
+        <div class="section-label">नेपाली जानकारी</div>
+        <h2 class="section-title">Short info in Nepali language</h2>
+        <p class="section-subtitle">
+          Simple summary of the group and important points, in both English and Nepali.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="lang-toggle">
+          <button class="lang-btn active" data-lang="en" type="button">English</button>
+          <button class="lang-btn" data-lang="np" type="button">नेपाली (Nepali)</button>
+        </div>
+
+        <div id="lang-en" class="lang-panel active">
+          <h3>About the group</h3>
+          <p>
+            Nepalese in Preston (NIP) is a friendly community for Nepali people living,
+            studying or working in and around Preston. The aim is to share jobs,
+            rooms, local information and support each other in difficult situations.
+          </p>
+          <ul class="list">
+            <li>Respect everyone – no abuse, caste or gender discrimination.</li>
+            <li>Use the group mainly for helpful information, not random spam.</li>
+            <li>For visa or legal issues, always check official GOV.UK pages.</li>
+            <li>If there is any problem, message admin Prabin Mahato directly.</li>
+          </ul>
+        </div>
+
+        <div id="lang-np" class="lang-panel">
+          <h3>समूहको बारेमा (नेपाली)</h3>
+          <p>
+            <strong>Nepalese in Preston (NIP)</strong> प्रेस्टन र आसपासमा बस्ने,
+            पढ्ने वा काम गर्ने नेपालीहरुको लागि बनाइएको एउटा सहयोगी समूह हो।
+            मुख्य उद्देश्य भनेको जागिर, बसोबास, स्थानीय जानकारी र आपतकालीन
+            अवस्थामा एक–अर्कालाई सहयोग गर्नु हो।
+          </p>
+          <ul class="list">
+            <li>सबैलाई सम्मान गर्नुहोस् – गालीगलौज, जातीय, लैङ्गिक भेदभाव नगर्नुहोस्।</li>
+            <li>समूहलाई मुख्यत: उपयोगी जानकारीका लागि प्रयोग गर्नुहोस्, अनावश्यक स्पाम लिंक नपठाउनुहोस्।</li>
+            <li>भिसा, कानुनी वा इमिग्रेसन सम्बन्धी कुरामा अन्तिम जानकारीका लागि
+              सधैं <strong>GOV.UK</strong> (अफिसियल UK सरकारको वेबसाइट) हेर्नुहोस्।</li>
+            <li>समूहमा समस्या आएमा कृपया एडमिन <strong>Prabin Mahato</strong> लाई
+              निजी सन्देश पठाउनुहोस्।</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -1747,6 +1978,6 @@
       { threshold: 0.15 }
     );
     revealEls.forEach((el) => observer.observe(el));
-  </script>
-</body>
-</html>
+
+    // student stories slider
+    const storySlides = document.query
