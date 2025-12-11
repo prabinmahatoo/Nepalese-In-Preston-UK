@@ -6,24 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Nepalese in Preston (NIP) – a community hub and WhatsApp group for Nepali people in Preston, UK. Jobs, accommodation, visa info, local information, events and community support."
+    content="Nepalese in Preston (NIP) – a community hub for Nepali people in Preston, UK. Jobs, accommodation, visa and immigration info (updated to 2025), local information, events and community support."
   />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --bg: #020617;
-      --bg-soft: #0b1120;
-      --accent: #2563eb;
-      --accent-soft: #93c5fd;
-      --accent-alt: #22c55e;
-      --text-main: #f9fafb;
-      --text-muted: #9ca3af;
-      --card-bg: #020617;
-      --border-subtle: rgba(148, 163, 184, 0.35);
+      --red: #d62828;
+      --blue: #003f87;
+      --blue-soft: #4f79d9;
+      --bg-light: #f8fafc;
+      --bg-dark: #0b1220;
+      --card-bg: #ffffff;
+      --card-bg-dark: #1e293b;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
       --radius-lg: 18px;
       --radius-md: 12px;
       --radius-pill: 999px;
-      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.9);
+      --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.25);
+      --shadow-md: 0 12px 24px rgba(15, 23, 42, 0.2);
+      --border-subtle: rgba(148, 163, 184, 0.4);
       --danger: #ef4444;
+    }
+
+    body.dark {
+      --bg-light: #020617;
+      --card-bg: var(--card-bg-dark);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --shadow-lg: 0 18px 40px rgba(15, 23, 42, 0.9);
+      --shadow-md: 0 12px 24px rgba(15, 23, 42, 0.85);
+      --border-subtle: rgba(148, 163, 184, 0.35);
     }
 
     * {
@@ -37,11 +51,15 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #e5f0ff 0, var(--bg-light) 38%, #e5e7eb 100%);
       color: var(--text-main);
-      line-height: 1.6;
-      min-height: 100vh;
+      line-height: 1.7;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark {
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
     }
 
     img {
@@ -59,7 +77,7 @@
     }
 
     .page {
-      max-width: 1120px;
+      max-width: 1160px;
       margin: 0 auto;
       padding: 12px clamp(14px, 4vw, 28px);
     }
@@ -69,16 +87,16 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(
-          to bottom,
-          rgba(15, 23, 42, 0.96),
-          rgba(15, 23, 42, 0.75),
-          transparent
-        ),
-        transparent;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      z-index: 40;
+      backdrop-filter: blur(16px);
+      background: rgba(248, 250, 252, 0.85);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    body.dark header {
+      background: rgba(15, 23, 42, 0.85);
+      border-color: rgba(148, 163, 184, 0.35);
     }
 
     .nav {
@@ -101,8 +119,8 @@
       border-radius: 50%;
       overflow: hidden;
       background: #e5e7eb;
-      border: 2px solid rgba(15, 23, 42, 0.9);
-      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+      border: 2px solid var(--red);
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.55);
       flex-shrink: 0;
     }
 
@@ -114,9 +132,14 @@
 
     .brand-text {
       font-weight: 700;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.05em;
       font-size: 0.95rem;
       text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    body.dark .brand-text {
+      color: #bfdbfe;
     }
 
     .nav-links {
@@ -128,7 +151,8 @@
 
     .nav-links a {
       position: relative;
-      padding-bottom: 2px;
+      padding-bottom: 3px;
+      font-weight: 500;
     }
 
     .nav-links a::after {
@@ -137,9 +161,9 @@
       left: 0;
       bottom: 0;
       width: 0;
-      height: 1px;
-      background: linear-gradient(to right, #2563eb, #38bdf8);
-      transition: width 180ms ease-out;
+      height: 2px;
+      background: linear-gradient(120deg, var(--red), var(--blue-soft));
+      transition: width 160ms ease-out;
     }
 
     .nav-links a:hover {
@@ -152,14 +176,20 @@
     }
 
     .nav-links a.active {
-      color: var(--accent-soft);
+      color: var(--blue-soft);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .nav-toggle {
       border-radius: var(--radius-pill);
       padding: 6px 10px;
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: var(--card-bg);
       color: var(--text-main);
       display: inline-flex;
       align-items: center;
@@ -172,6 +202,19 @@
       font-size: 1.1rem;
     }
 
+    .mode-toggle {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: var(--card-bg);
+      font-size: 1.1rem;
+    }
+
     .nav-mobile {
       display: none;
       flex-direction: column;
@@ -180,11 +223,12 @@
       border-radius: var(--radius-md);
       border: 1px solid rgba(148, 163, 184, 0.4);
       margin-bottom: 6px;
-      background: radial-gradient(circle at top, #020617 0, #020617 60%);
+      background: var(--card-bg);
+      box-shadow: var(--shadow-md);
+      font-size: 0.9rem;
     }
 
     .nav-mobile a {
-      font-size: 0.92rem;
       color: var(--text-muted);
       padding-block: 4px;
     }
@@ -193,7 +237,7 @@
       color: var(--text-main);
     }
 
-    @media (min-width: 780px) {
+    @media (min-width: 820px) {
       .nav-links {
         display: flex;
       }
@@ -207,18 +251,27 @@
     .announce {
       margin-top: 6px;
       border-radius: var(--radius-md);
-      border: 1px solid rgba(56, 189, 248, 0.7);
-      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(56, 189, 248, 0.8);
+      background: linear-gradient(135deg, rgba(191, 219, 254, 0.9), rgba(219, 234, 254, 0.9));
       padding: 8px 10px;
       display: flex;
       align-items: flex-start;
       gap: 8px;
-      font-size: 0.82rem;
-      color: var(--accent-soft);
+      font-size: 0.8rem;
+      color: #0f172a;
+    }
+
+    body.dark .announce {
+      background: rgba(15, 23, 42, 0.95);
+      color: #e5f3ff;
     }
 
     .announce strong {
-      color: #e5f3ff;
+      color: var(--red);
+    }
+
+    body.dark .announce strong {
+      color: #fed7d7;
     }
 
     .announce-close {
@@ -233,16 +286,16 @@
     /* HERO */
 
     .hero {
-      margin-top: 12px;
+      margin-top: 14px;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 18px;
+      gap: 20px;
       align-items: center;
     }
 
     @media (min-width: 900px) {
       .hero {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
         gap: 26px;
       }
     }
@@ -253,30 +306,30 @@
       gap: 8px;
       padding: 4px 10px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(248, 250, 252, 0.25);
-      background: radial-gradient(circle at left, rgba(37, 99, 235, 0.4), transparent);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: linear-gradient(120deg, rgba(214, 40, 40, 0.07), rgba(37, 99, 235, 0.06));
       font-size: 0.75rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
-      color: var(--accent-soft);
+      color: var(--blue-soft);
     }
 
     .tag-dot {
       width: 7px;
       height: 7px;
       border-radius: 999px;
-      background: #22c55e;
+      background: #16a34a;
     }
 
     .hero-title {
-      font-size: clamp(2rem, 3.1vw + 1.2rem, 2.7rem);
+      font-size: clamp(2rem, 3.1vw + 1.2rem, 2.8rem);
       letter-spacing: -0.04em;
       line-height: 1.1;
       margin-top: 8px;
     }
 
     .hero-title span {
-      background: linear-gradient(to right, #2563eb, #38bdf8);
+      background: linear-gradient(120deg, var(--red), var(--blue-soft));
       -webkit-background-clip: text;
       color: transparent;
     }
@@ -288,7 +341,7 @@
     }
 
     .hero-subtitle strong {
-      color: var(--accent-soft);
+      color: var(--blue-soft);
       font-weight: 600;
     }
 
@@ -297,11 +350,12 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     .btn {
       border-radius: var(--radius-pill);
-      padding: 11px 18px;
+      padding: 10px 16px;
       border: 1px solid transparent;
       font-size: 0.95rem;
       cursor: pointer;
@@ -311,12 +365,13 @@
       gap: 8px;
       transition: 160ms ease-out;
       text-decoration: none;
+      font-weight: 600;
     }
 
     .btn-primary {
-      background: radial-gradient(circle at top left, #22c55e, #16a3ff);
+      background: linear-gradient(135deg, var(--red), var(--blue-soft));
       color: #f9fafb;
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-md);
     }
 
     .btn-primary:hover {
@@ -324,21 +379,27 @@
     }
 
     .btn-ghost {
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text-main);
-      border-color: rgba(148, 163, 184, 0.6);
+      background: transparent;
+      color: var(--blue);
+      border-color: rgba(148, 163, 184, 0.8);
     }
 
-    .btn-ghost:hover {
-      background: #020617;
+    body.dark .btn-ghost {
+      color: var(--text-main);
+    }
+
+    @media (min-width: 520px) {
+      .hero-cta {
+        flex-direction: row;
+      }
     }
 
     .copy-btn {
       border-radius: var(--radius-pill);
-      padding: 8px 14px;
-      border: 1px dashed rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--accent-soft);
+      padding: 7px 12px;
+      border: 1px dashed rgba(148, 163, 184, 0.8);
+      background: rgba(248, 250, 252, 0.7);
+      color: var(--blue-soft);
       font-size: 0.8rem;
       cursor: pointer;
       display: inline-flex;
@@ -347,26 +408,14 @@
       margin-top: 6px;
     }
 
+    body.dark .copy-btn {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
     .copy-btn.copied {
       border-style: solid;
-      border-color: var(--accent-alt);
-      color: var(--accent-alt);
-    }
-
-    @media (min-width: 480px) {
-      .hero-cta {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-      .btn {
-        width: auto;
-      }
-    }
-
-    @media (max-width: 479px) {
-      .btn {
-        width: 100%;
-      }
+      border-color: #16a34a;
+      color: #16a34a;
     }
 
     .hero-meta {
@@ -388,55 +437,62 @@
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: var(--accent);
+      background: var(--blue-soft);
     }
 
     .hero-image-card {
-      border-radius: 22px;
+      border-radius: 20px;
       border: 1px solid var(--border-subtle);
-      background: radial-gradient(circle at top, #111827 0, #020617 70%);
+      background: radial-gradient(circle at top, #e5f0ff 0, var(--card-bg) 55%);
       padding: 14px;
-      box-shadow: var(--shadow-soft);
+      box-shadow: var(--shadow-lg);
       margin-top: 4px;
       font-size: 0.9rem;
       color: var(--text-muted);
     }
 
+    body.dark .hero-image-card {
+      background: radial-gradient(circle at top, #111827 0, #020617 60%);
+    }
+
     .hero-image-card img {
-      border-radius: 16px;
+      border-radius: 14px;
       margin-bottom: 8px;
     }
 
     .hero-image-card strong {
-      color: var(--accent-soft);
+      color: var(--blue-soft);
     }
 
-    /* SECTIONS */
+    /* SECTION BASE */
 
     section {
       margin-top: 28px;
     }
 
     .section-heading {
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .section-label {
       font-size: 0.8rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--accent-soft);
+      color: var(--blue-soft);
       margin-bottom: 3px;
     }
 
     .section-title {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       letter-spacing: -0.03em;
       margin-bottom: 3px;
+      background: linear-gradient(120deg, var(--blue), var(--blue-soft));
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
     .section-subtitle {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
     }
 
@@ -456,8 +512,8 @@
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
       background: var(--card-bg);
-      padding: 12px 14px;
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-lg);
       font-size: 0.9rem;
       color: var(--text-muted);
     }
@@ -487,7 +543,13 @@
       border: 1px solid rgba(148, 163, 184, 0.6);
       font-size: 0.78rem;
       margin-top: 6px;
-      color: var(--accent-soft);
+      color: #0f172a;
+      background: rgba(219, 234, 254, 0.8);
+    }
+
+    body.dark .tag-pill {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
     }
 
     /* INFO TABS */
@@ -496,8 +558,8 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 8px;
+      margin-bottom: 8px;
     }
 
     .info-tab-btn {
@@ -505,7 +567,7 @@
       padding: 7px 12px;
       font-size: 0.85rem;
       border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
+      background: transparent;
       color: var(--text-muted);
       cursor: pointer;
       display: inline-flex;
@@ -513,78 +575,19 @@
       gap: 6px;
     }
 
-    .info-tab-btn span {
-      font-size: 1rem;
-    }
-
     .info-tab-btn.active {
-      background: radial-gradient(circle at top left, #2563eb, #38bdf8);
+      background: linear-gradient(135deg, var(--blue), var(--blue-soft));
       color: #f9fafb;
       border-color: transparent;
     }
 
     .info-panel {
       display: none;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .info-panel.active {
       display: block;
-    }
-
-    /* WARNING / RULES */
-
-    .warning-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(239, 68, 68, 0.7);
-      background: rgba(127, 29, 29, 0.9);
-      padding: 12px 14px;
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
-      font-size: 0.9rem;
-      color: #fee2e2;
-    }
-
-    .warning-card h3 {
-      font-size: 1rem;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* IMAGE GRID */
-
-    .image-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    @media (min-width: 720px) {
-      .image-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    .img-card {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: radial-gradient(circle at top, #1f2937 0, #020617 70%);
-      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.9);
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .img-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .img-card-body {
-      padding: 8px 9px 10px;
     }
 
     /* JOB BOARD */
@@ -606,7 +609,7 @@
       padding: 7px 10px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
+      background: transparent;
       color: var(--text-main);
       font-size: 0.9rem;
     }
@@ -615,14 +618,14 @@
       border-radius: var(--radius-pill);
       padding: 6px 11px;
       border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
+      background: transparent;
       color: var(--text-muted);
       font-size: 0.8rem;
       cursor: pointer;
     }
 
     .job-filter-btn.active {
-      background: radial-gradient(circle at top left, #2563eb, #38bdf8);
+      background: linear-gradient(135deg, var(--blue), var(--blue-soft));
       color: #f9fafb;
       border-color: transparent;
     }
@@ -642,10 +645,14 @@
 
     .job-card {
       border-radius: 14px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      background: rgba(248, 250, 252, 0.9);
       padding: 9px 11px;
       font-size: 0.86rem;
+    }
+
+    body.dark .job-card {
+      background: #020617;
     }
 
     .job-header {
@@ -665,7 +672,7 @@
       padding: 2px 7px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(148, 163, 184, 0.6);
-      color: var(--accent-soft);
+      color: var(--blue-soft);
       white-space: nowrap;
     }
 
@@ -675,15 +682,83 @@
       margin-top: 2px;
     }
 
+    /* IMAGE GRID */
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 720px) {
+      .image-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .img-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at top, #e5f0ff 0, #f9fafb 60%);
+      box-shadow: var(--shadow-md);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    body.dark .img-card {
+      background: radial-gradient(circle at top, #1f2937 0, #020617 70%);
+    }
+
+    .img-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .img-card-body {
+      padding: 8px 9px 10px;
+    }
+
+    /* WARNING / RULES */
+
+    .warning-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(239, 68, 68, 0.8);
+      background: rgba(254, 226, 226, 0.9);
+      padding: 12px 14px;
+      box-shadow: var(--shadow-lg);
+      font-size: 0.9rem;
+      color: #7f1d1d;
+    }
+
+    body.dark .warning-card {
+      background: rgba(127, 29, 29, 0.92);
+      color: #fee2e2;
+    }
+
+    .warning-card h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     /* FAQ */
 
     .faq-list details {
       border-radius: var(--radius-md);
-      border: 1px solid rgba(148, 163, 184, 0.5);
+      border: 1px solid rgba(148, 163, 184, 0.6);
       padding: 8px 10px;
       margin-bottom: 6px;
-      background: #020617;
+      background: rgba(248, 250, 252, 0.9);
       font-size: 0.88rem;
+    }
+
+    body.dark .faq-list details {
+      background: #020617;
     }
 
     .faq-list summary {
@@ -697,7 +772,156 @@
       color: var(--text-muted);
     }
 
-    /* USEFUL LINKS */
+    /* STORIES SLIDER */
+
+    .stories-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stories-track {
+      position: relative;
+      min-height: 150px;
+    }
+
+    .story-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: translateX(14px);
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    }
+
+    .story-slide.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .story-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .stories-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+      gap: 8px;
+    }
+
+    .stories-arrows {
+      display: flex;
+      gap: 6px;
+    }
+
+    .stories-btn {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: transparent;
+      color: var(--text-main);
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .stories-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .stories-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .stories-dot.active {
+      background: var(--blue-soft);
+      border-color: var(--blue-soft);
+    }
+
+    .story-form {
+      margin-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 10px;
+      font-size: 0.86rem;
+    }
+
+    .story-form label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      margin-bottom: 2px;
+    }
+
+    .story-form input,
+    .story-form textarea {
+      width: 100%;
+      padding: 7px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: transparent;
+      color: var(--text-main);
+      font-size: 0.86rem;
+      resize: vertical;
+    }
+
+    .story-form textarea {
+      min-height: 80px;
+    }
+
+    .story-form .hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* LANG TOGGLE */
+
+    .lang-toggle {
+      display: inline-flex;
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      margin-bottom: 8px;
+      background: rgba(248, 250, 252, 0.9);
+    }
+
+    body.dark .lang-toggle {
+      background: #020617;
+    }
+
+    .lang-btn {
+      border-radius: var(--radius-pill);
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, var(--blue), var(--blue-soft));
+      color: #f9fafb;
+    }
+
+    .lang-panel {
+      display: none;
+      margin-top: 4px;
+      font-size: 0.9rem;
+    }
+
+    .lang-panel.active {
+      display: block;
+    }
+
+    /* LINKS GRID */
 
     .links-grid {
       display: grid;
@@ -718,157 +942,79 @@
       gap: 6px;
       padding: 5px 10px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.7);
       font-size: 0.8rem;
-      color: var(--accent-soft);
-      margin: 2px 4px 2px 0;
+      color: var(--blue-soft);
+      margin: 2px 3px 2px 0;
       white-space: nowrap;
     }
 
-    /* STUDENT STORIES SLIDER */
+    /* CALCULATORS */
 
-    .stories-card {
-      position: relative;
-      overflow: hidden;
+    .calc-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      margin-top: 8px;
     }
 
-    .stories-track {
-      position: relative;
-      min-height: 150px;
+    @media (min-width: 720px) {
+      .calc-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
-    .story-slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transform: translateX(16px);
-      transition: opacity 0.45s ease-out, transform 0.45s ease-out;
-    }
-
-    .story-slide.active {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .story-meta {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .stories-controls {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 10px;
-      gap: 8px;
-    }
-
-    .stories-arrows {
-      display: flex;
-      gap: 6px;
-    }
-
-    .stories-btn {
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
-      color: var(--text-main);
-      font-size: 0.8rem;
-      padding: 5px 10px;
-      cursor: pointer;
-    }
-
-    .stories-dots {
-      display: flex;
-      gap: 4px;
-    }
-
-    .stories-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.8);
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .stories-dot.active {
-      background: var(--accent-soft);
-      border-color: var(--accent-soft);
-    }
-
-    .story-form {
-      margin-top: 14px;
-      border-top: 1px solid var(--border-subtle);
-      padding-top: 10px;
+    .calc-group {
+      margin-top: 6px;
       font-size: 0.86rem;
     }
 
-    .story-form label {
+    .calc-group label {
       display: block;
-      font-size: 0.8rem;
+      margin-bottom: 3px;
       color: var(--text-muted);
-      margin-top: 6px;
-      margin-bottom: 2px;
     }
 
-    .story-form input,
-    .story-form textarea {
+    .calc-group input {
       width: 100%;
       padding: 7px 10px;
       border-radius: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: transparent;
       color: var(--text-main);
       font-size: 0.86rem;
-      resize: vertical;
-      min-height: 40px;
     }
 
-    .story-form textarea {
-      min-height: 80px;
-    }
-
-    .story-form .hint {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    /* NEPALI LANGUAGE SECTION */
-
-    .lang-toggle {
-      display: inline-flex;
-      border-radius: var(--radius-pill);
-      padding: 3px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      margin-bottom: 8px;
-      background: rgba(15, 23, 42, 0.95);
-    }
-
-    .lang-btn {
-      border-radius: var(--radius-pill);
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      font-size: 0.83rem;
-      padding: 5px 10px;
-      cursor: pointer;
-    }
-
-    .lang-btn.active {
-      background: radial-gradient(circle at top left, #2563eb, #38bdf8);
-      color: #f9fafb;
-    }
-
-    .lang-panel {
-      display: none;
+    .calc-result {
       margin-top: 6px;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
     }
 
-    .lang-panel.active {
-      display: block;
+    .calc-warning {
+      color: var(--danger);
+      font-size: 0.8rem;
+      margin-top: 3px;
+    }
+
+    /* SKILLS BOARD */
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .skill-pill {
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.8rem;
+      background: rgba(248, 250, 252, 0.9);
+    }
+
+    body.dark .skill-pill {
+      background: #020617;
     }
 
     /* FLOATING BUTTONS */
@@ -885,7 +1031,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 14px 30px rgba(15, 23, 42, 0.9);
-      z-index: 30;
+      z-index: 50;
     }
 
     .float-wa span {
@@ -899,14 +1045,14 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.96);
       border: 1px solid rgba(148, 163, 184, 0.8);
       display: none;
       align-items: center;
       justify-content: center;
       font-size: 1.3rem;
-      color: var(--text-main);
-      z-index: 30;
+      color: #f9fafb;
+      z-index: 50;
       cursor: pointer;
     }
 
@@ -961,27 +1107,33 @@
           <a href="#home">Home</a>
           <a href="#info">Info Centre</a>
           <a href="#visa">Visa &amp; Immigration</a>
-          <a href="#stories">Stories</a>
+          <a href="#tools">Student Tools</a>
           <a href="#job-board">Job Board</a>
           <a href="#preston">About Preston</a>
-          <a href="#events">Events</a>
+          <a href="#visiting">Places to Visit</a>
           <a href="#faq">FAQ</a>
           <a href="#rules">Rules</a>
           <a href="#contact">Contact</a>
         </div>
 
-        <button class="nav-toggle" id="navToggle" type="button">
-          <span>☰</span> Menu
-        </button>
+        <div class="nav-right">
+          <button class="mode-toggle" id="modeToggle" type="button" aria-label="Toggle dark mode">
+            🌙
+          </button>
+          <button class="nav-toggle" id="navToggle" type="button">
+            <span>☰</span> Menu
+          </button>
+        </div>
       </nav>
+
       <div class="nav-mobile" id="navMobile">
         <a href="#home">Home</a>
         <a href="#info">Info Centre</a>
         <a href="#visa">Visa &amp; Immigration</a>
-        <a href="#stories">Stories</a>
+        <a href="#tools">Student Tools</a>
         <a href="#job-board">Job Board</a>
         <a href="#preston">About Preston</a>
-        <a href="#events">Events</a>
+        <a href="#visiting">Places to Visit</a>
         <a href="#faq">FAQ</a>
         <a href="#rules">Rules</a>
         <a href="#contact">Contact</a>
@@ -990,10 +1142,9 @@
       <!-- announcement bar -->
       <div class="announce" id="announceBar">
         <div>
-          📣 <strong>Visa reminder:</strong> Graduate (post-study) visas currently
-          last <strong>2 years</strong> (or <strong>3 years</strong> for PhD). For
-          future changes, always check official GOV.UK pages. See the
-          <a href="#visa" style="color:#93c5fd;">Visa &amp; Immigration</a> section.
+          📣 <strong>Visa reminder (2025):</strong> Student and Graduate visa rules can change.
+          Always double-check details on <a href="https://www.gov.uk" target="_blank" rel="noreferrer" style="color:#1d4ed8;">GOV.UK</a>
+          before applying. See the <a href="#visa" style="color:#1d4ed8;">Visa &amp; Immigration</a> section for a simple community summary.
         </div>
         <button class="announce-close" type="button" aria-label="Close announcement">✕</button>
       </div>
@@ -1076,19 +1227,19 @@
       <div class="card">
         <div class="info-tabs">
           <button class="info-tab-btn active" data-tab="jobs">
-            <span>💼</span> Finding Jobs
+            💼 Finding Jobs
           </button>
           <button class="info-tab-btn" data-tab="medical">
-            <span>🏥</span> Medical / NHS
+            🏥 Medical / NHS
           </button>
           <button class="info-tab-btn" data-tab="bank">
-            <span>🏦</span> Bank Accounts
+            🏦 Bank Accounts
           </button>
           <button class="info-tab-btn" data-tab="sim">
-            <span>📱</span> SIM &amp; Mobile
+            📱 SIM &amp; Mobile
           </button>
           <button class="info-tab-btn" data-tab="other">
-            <span>ℹ️</span> Other Important Info
+            ℹ️ Other Important Info
           </button>
         </div>
 
@@ -1139,7 +1290,7 @@
           <h3>Opening a bank account</h3>
           <ul class="list">
             <li><strong>Choose a bank:</strong> Common options include high street banks
-              (e.g. Barclays, NatWest, Santander) and online banks (e.g. Monzo, Starling).</li>
+              (Barclays, NatWest, Santander, HSBC) and app-based banks (Monzo, Starling).</li>
             <li><strong>Basic documents:</strong> Usually need ID (passport/BRP) and proof of
               address (tenancy agreement, bill, employer or university letter).</li>
             <li><strong>How to apply:</strong> Many banks allow account opening through their
@@ -1175,7 +1326,7 @@
             <li><strong>National Insurance Number:</strong> Needed for most jobs. Apply online
               through the UK government website; keep your documents ready.</li>
             <li><strong>Emergency numbers:</strong> 999 for emergency, 101 for non-emergency police,
-              111 for medical advice, 0800 numbers are usually free from mobiles.</li>
+              111 for medical advice. Many 0800 numbers are free from mobiles.</li>
             <li><strong>Documents safety:</strong> Keep passport, BRP and contracts in a safe
               place. Take photos or scans for backup.</li>
             <li><strong>Scam awareness:</strong> Be careful with calls or messages asking for
@@ -1190,38 +1341,31 @@
     <!-- VISA & IMMIGRATION -->
     <section id="visa" class="reveal">
       <div class="section-heading">
-        <div class="section-label">Visa &amp; immigration</div>
-        <h2 class="section-title">Student, Graduate (PSW) &amp; ILR – community summary</h2>
+        <div class="section-label">Visa &amp; immigration (summary)</div>
+        <h2 class="section-title">Student, Graduate (PSW) &amp; ILR – community overview (2025)</h2>
         <p class="section-subtitle">
           Simple explanation for Nepali students and workers in Preston, based on information
-          from GOV.UK. Rules change – always read the latest guidance on the official website
-          before you apply. This is not legal or immigration advice.
+          from GOV.UK and official guidance. Rules can change – always check the latest details
+          on GOV.UK before applying. This is not legal advice.
+        </p>
+        <p class="section-subtitle" style="margin-top:4px;">
+          <strong>Last checked:</strong> December 2025.
         </p>
       </div>
 
       <div class="two-grid">
         <div class="card">
-          <h3>Student visa – main points</h3>
+          <h3>Student visa – key points</h3>
           <ul class="list">
-            <li>
-              <strong>Who can apply:</strong> You usually need an offer and CAS from a licensed
-              college or university, enough money for tuition and living costs, and to meet
-              English language requirements.:contentReference[oaicite:1]{index=1}
-            </li>
-            <li>
-              <strong>What it lets you do:</strong> Study an approved course and, in many cases,
-              work part-time in term time and more hours in holidays (check your visa
-              conditions carefully).:contentReference[oaicite:2]{index=2}
-            </li>
-            <li>
-              <strong>Dependants (partner &amp; children):</strong> You may be able to bring
-              them in limited situations – for example some government-sponsored students or
-              certain postgraduate courses. Always read the “Your partner and children”
-              section on the Student visa page.:contentReference[oaicite:3]{index=3}
-            </li>
-            <li>
-              <strong>Key links:</strong> Use GOV.UK to check fees, documents and how to apply.
-            </li>
+            <li><strong>Eligibility:</strong> Offer and CAS from a licensed college/university,
+              enough money for tuition and living costs, and English language requirements. (See GOV.UK “Student visa” page.)</li>
+            <li><strong>Work:</strong> Many degree-level students can work part-time in term time
+              and more hours in holidays – check the work conditions printed on your BRP or eVisa.</li>
+            <li><strong>Dependants:</strong> Only some students can bring a partner/children
+              (for example certain postgraduate courses or government-sponsored students). Check
+              “Your partner and children” section on GOV.UK or trusted sites such as UKCISA.</li>
+            <li><strong>Stay length:</strong> Usually course length plus some extra time
+              before/after the course – details are set by the immigration rules.</li>
           </ul>
           <a
             class="btn btn-ghost"
@@ -1230,31 +1374,22 @@
             rel="noreferrer"
             style="margin-top:8px;"
           >
-            🔗 Official Student visa page
+            🔗 GOV.UK – Student visa
           </a>
         </div>
 
         <div class="card">
           <h3>Graduate visa (post-study / PSW)</h3>
           <ul class="list">
-            <li>
-              <strong>What it is:</strong> Lets you stay in the UK after successfully
-              completing an eligible UK course, to work or look for work. You must apply
-              from inside the UK while your Student visa is still valid.:contentReference[oaicite:4]{index=4}
-            </li>
-            <li>
-              <strong>How long you can stay:</strong> A Graduate visa currently lasts
-              <strong>2 years</strong> (or <strong>3 years</strong> if you completed a
-              PhD or other doctoral qualification). For applications made on or after
-              <strong>1 January 2027</strong>, most undergraduate and taught postgraduate
-              graduates will get <strong>18 months</strong> instead of 2 years.:contentReference[oaicite:5]{index=5}
-            </li>
-            <li>
-              <strong>Work rules:</strong> You can work or look for work in most jobs
-              at any skill level, without sponsorship, but cannot work as a professional
-              sportsperson. The visa cannot be extended – if you want to stay longer you
-              must move to another route (for example Skilled Worker).:contentReference[oaicite:6]{index=6}
-            </li>
+            <li><strong>What it is:</strong> Lets you stay in the UK after successfully completing
+              an eligible UK course, to work or look for work. It is an unsponsored route (no job offer needed).</li>
+            <li><strong>Length of stay:</strong> Currently usually 2 years, or 3 years if you completed
+              a PhD or other doctoral qualification. For applications on or after 1 January 2027,
+              most graduates will normally get 18 months instead of 2 years – check GOV.UK for the exact rule at the time you apply.</li>
+            <li><strong>Work rules:</strong> You can work at most skill levels and change jobs freely,
+              but there are some limits (for example you cannot work as a professional sportsperson).</li>
+            <li><strong>Next step:</strong> The Graduate visa cannot be extended – to stay longer
+              you usually move to another route (for example Skilled Worker) and later may qualify for ILR.</li>
           </ul>
           <a
             class="btn btn-ghost"
@@ -1263,7 +1398,7 @@
             rel="noreferrer"
             style="margin-top:8px;"
           >
-            🔗 Official Graduate visa page
+            🔗 GOV.UK – Graduate visa
           </a>
         </div>
       </div>
@@ -1271,57 +1406,126 @@
       <div class="card" style="margin-top:12px;">
         <h3>Indefinite Leave to Remain (ILR) / settlement</h3>
         <ul class="list">
-          <li>
-            <strong>What ILR is:</strong> ILR (settlement) gives you the right to live,
-            work and study in the UK without time limit, and you can usually use it later
-            to apply for British citizenship.:contentReference[oaicite:7]{index=7}
-          </li>
-          <li>
-            <strong>Routes to ILR:</strong> There are different ways to qualify – for
-            example after several years on a work or family route, as a refugee, or after
-            long residence (often 10 years of lawful stay).:contentReference[oaicite:8]{index=8}
-          </li>
-          <li>
-            <strong>Continuous residence:</strong> You normally need a certain length of
-            lawful, continuous residence without long gaps or periods without valid
-            permission.:contentReference[oaicite:9]{index=9}
-          </li>
-          <li>
-            <strong>Earned settlement proposals:</strong> The government has launched a
-            consultation to move towards an “earned settlement” system where the default
-            qualifying period for many migrants increases from 5 years to 10 years, with
-            possible reductions for people who meet contribution and integration criteria.
-            The changes are planned from around April 2026 but are not all in force yet –
-            always check GOV.UK for updates.:contentReference[oaicite:10]{index=10}
-          </li>
+          <li><strong>What ILR is:</strong> ILR (settlement) gives you the right to live and work in
+            the UK without time limit. It is often a step towards British citizenship.</li>
+          <li><strong>Common routes:</strong> Many people qualify after a period on work or family visas
+            (often 5 years), or after long residence (for example 10 years of lawful stay). Different
+            visas have different rules.</li>
+          <li><strong>Continuous residence:</strong> The rules look at “continuous” lawful stay and can
+            limit how long you can be outside the UK in each year.</li>
+          <li><strong>Earned settlement consultation:</strong> In 2025 the UK government started consulting on
+            an “earned settlement” system which could change ILR rules from around 2026 onwards. It may lengthen
+            some routes (for example to 10 years) and offer quicker routes for some people. Until rules change,
+            the existing ILR rules still apply.</li>
         </ul>
         <p class="section-subtitle" style="margin-top:6px;">
-          Always read the latest ILR pages on GOV.UK or speak to a qualified immigration
-          adviser before making big decisions.
+          👉 Always read the latest ILR pages on GOV.UK or speak to a qualified immigration adviser or solicitor
+          before making big decisions.
         </p>
-        <div class="tag-pill">
-          📌 Community summary only – not legal or immigration advice.
-        </div>
         <p class="section-subtitle" style="margin-top:6px;">
           Official links:
           <a
             href="https://www.gov.uk/indefinite-leave-to-remain"
             target="_blank"
             rel="noreferrer"
-            style="color:#93c5fd;"
+            style="color:#2563eb;"
           >
             Check if you can get ILR
           </a>
           ·
           <a
-            href="https://www.gov.uk/browse/visas-immigration/settle-in-the-uk"
+            href="https://www.gov.uk/browse/visas-immigration"
             target="_blank"
             rel="noreferrer"
-            style="color:#93c5fd;"
+            style="color:#2563eb;"
           >
-            Live permanently in the UK
+            All visa and immigration routes
           </a>
         </p>
+        <div class="tag-pill">
+          📌 Community summary only – not immigration or legal advice.
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDENT TOOLS / CALCULATOR / COST OF LIVING -->
+    <section id="tools" class="reveal">
+      <div class="section-heading">
+        <div class="section-label">Student &amp; worker tools</div>
+        <h2 class="section-title">Part-time work, cost of living &amp; first week in Preston</h2>
+        <p class="section-subtitle">
+          Simple tools and guides to help new students and workers stay within visa rules and manage money.
+          Amounts are examples only – everyone’s costs are different.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Part-time hours &amp; income (example calculator)</h3>
+        <div class="calc-grid">
+          <div>
+            <div class="calc-group">
+              <label for="hoursPerWeek">Hours per week (part-time job)</label>
+              <input id="hoursPerWeek" type="number" min="0" max="80" placeholder="e.g. 18" />
+            </div>
+            <div class="calc-group">
+              <label for="hourlyRate">Hourly pay (£)</label>
+              <input id="hourlyRate" type="number" min="0" step="0.01" placeholder="e.g. 11.50" />
+            </div>
+            <button class="btn btn-primary" id="calcBtn" type="button" style="margin-top:8px;">
+              🧮 Calculate weekly income
+            </button>
+          </div>
+          <div>
+            <div class="calc-result" id="calcResult">
+              Enter your hours and hourly rate to see an example weekly income.
+            </div>
+            <div class="calc-warning" id="calcWarning"></div>
+            <p class="section-subtitle" style="margin-top:6px;">
+              If your visa has work limits (for example 20 hours in term time on a Student visa),
+              make sure you follow the exact conditions shown on your BRP/eVisa and GOV.UK.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-grid" style="margin-top:12px;">
+        <div class="card">
+          <h3>Cost of living – example breakdown (Preston)</h3>
+          <ul class="list">
+            <li><strong>Room in shared house:</strong> Approx. range for many students is lower than some big UK cities. Check local adverts and never pay large cash without a receipt.</li>
+            <li><strong>Food:</strong> Cooking at home (Asian / Nepali groceries) is normally much cheaper than eating out often.</li>
+            <li><strong>Transport:</strong> Local bus passes, student discounts and railcards can save money on regular trips.</li>
+            <li><strong>Other costs:</strong> Phone, internet, study materials, clothes, occasional visits to Nepal.</li>
+          </ul>
+          <p class="section-subtitle" style="margin-top:6px;">
+            These are only rough ideas, not fixed prices. Members can share up-to-date examples in the WhatsApp group.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>First week in Preston – simple checklist</h3>
+          <ul class="list">
+            <li>Buy a UK SIM card and set up mobile banking / WhatsApp.</li>
+            <li>Register with your university/college and collect student ID.</li>
+            <li>Check your tenancy agreement, bills and house rules.</li>
+            <li>Register with a GP and find the nearest pharmacy.</li>
+            <li>Learn main bus routes / train station and download travel apps.</li>
+            <li>Save emergency numbers and important contacts.</li>
+            <li>Join the NIP WhatsApp group and introduce yourself politely.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px;">
+        <h3>Housing checklist – before you move in</h3>
+        <ul class="list">
+          <li>Read the tenancy agreement carefully (rent amount, deposit, notice period, who pays bills).</li>
+          <li>Check if bills are included (gas, electricity, water, council tax, internet).</li>
+          <li>Take photos or videos of the room and property on the first day as evidence of condition.</li>
+          <li>Avoid paying large amounts of cash without a written receipt or bank transfer proof.</li>
+          <li>Ask about house rules (guests, noise, cleaning rota, smoking, pets).</li>
+          <li>If something does not feel right or safe, ask trusted friends or the group before agreeing.</li>
+        </ul>
       </div>
     </section>
 
@@ -1329,9 +1533,9 @@
     <section id="stories" class="reveal">
       <div class="section-heading">
         <div class="section-label">Student stories</div>
-        <h2 class="section-title">Experiences from Nepalese students in Preston</h2>
+        <h2 class="section-title">Experiences from Nepalese in Preston</h2>
         <p class="section-subtitle">
-          Short stories and tips. Later you can edit these and add real stories from NIP members.
+          Short example stories and tips. Later you can replace these with real stories from NIP members.
         </p>
       </div>
 
@@ -1339,33 +1543,37 @@
         <div class="stories-track">
           <article class="story-slide active" data-index="0">
             <div class="story-meta">🎓 BSc Computing · UCLan · First year</div>
-            <h3>“Part-time work and studies can balance nicely”</h3>
-            <p class="section-subtitle" style="margin-top:4px;">
-              I work 16 hours per week in a restaurant and focus on classes in the day.
-              Joining the NIP group helped me find my first job and room share. My tip:
-              fix your timetable first, then look for jobs that match your free time.
+            <h3 style="color:var(--text-main); margin-bottom:4px;">
+              “Part-time work and studies can balance nicely”
+            </h3>
+            <p class="section-subtitle">
+              I work around 16 hours per week in a restaurant and focus on classes in the day.
+              Joining the NIP group helped me find my first job and room share. My tip: fix your
+              university timetable first, then look for jobs that match your free time.
             </p>
           </article>
 
           <article class="story-slide" data-index="1">
-            <div class="story-meta">🎓 MSc Nursing · UCLan · Graduate visa</div>
-            <h3>“Graduate visa gave me time to find an NHS job”</h3>
-            <p class="section-subtitle" style="margin-top:4px;">
-              After finishing my course I switched to the Graduate visa. I did care home
-              shifts first, then applied for NHS jobs. Keep your CV ready, collect
-              references while you are on a Student visa, and always double-check GOV.UK
-              before making plans.
+            <div class="story-meta">🎓 MSc Nursing · Graduate visa</div>
+            <h3 style="color:var(--text-main); margin-bottom:4px;">
+              “Graduate visa gave me time to look for NHS work”
+            </h3>
+            <p class="section-subtitle">
+              After finishing my course I switched from Student to Graduate visa. I did care home
+              shifts first, then applied for NHS jobs. Keep your CV ready, collect references while
+              you study, and always double-check GOV.UK rules before planning your next visa.
             </p>
           </article>
 
           <article class="story-slide" data-index="2">
-            <div class="story-meta">🎓 BA Business · UCLan · Final year</div>
-            <h3>“Preston is cheaper than many UK cities”</h3>
-            <p class="section-subtitle" style="margin-top:4px;">
-              Rent and travel costs are usually lower than big cities like Manchester or
-              London. Sharing a house with other Nepali students, cooking at home and
-              using student discounts makes life easier. The group is great for finding
-              new flatmates when someone moves out.
+            <div class="story-meta">🎓 BA Business · Final year</div>
+            <h3 style="color:var(--text-main); margin-bottom:4px;">
+              “Preston is cheaper than many bigger cities”
+            </h3>
+            <p class="section-subtitle">
+              Rent and travel are usually lower than in cities like London. Sharing a house with
+              other Nepali students, cooking at home and using student discounts helps a lot. The
+              NIP group is useful when someone moves out and a spare room becomes available.
             </p>
           </article>
         </div>
@@ -1383,7 +1591,7 @@
         </div>
 
         <form class="story-form" id="storyForm">
-          <h3 style="margin-bottom:4px;">Share your story</h3>
+          <h3 style="margin-bottom:4px; color:var(--text-main);">Share your story</h3>
           <p class="hint">
             Fill this short form and we will open WhatsApp with a pre-written message so
             you can send your story to the admin.
@@ -1451,7 +1659,7 @@
             </div>
             <div class="job-meta">Bamber Bridge · Full-time</div>
             <p class="section-subtitle">
-              Physical role in warehouse environment (lifting, packing, scanning). Agency or
+              Physical role in a warehouse environment (lifting, packing, scanning). Agency or
               company link can be shared by members.
             </p>
           </article>
@@ -1487,7 +1695,7 @@
       </div>
     </section>
 
-    <!-- PRESTON / HISTORY / NEARBY -->
+    <!-- PRESTON / NEARBY -->
     <section id="preston" class="reveal">
       <div class="section-heading">
         <div class="section-label">Preston &amp; nearby areas</div>
@@ -1513,7 +1721,7 @@
               href="https://www.google.com/maps/place/Preston/"
               target="_blank"
               rel="noreferrer"
-              style="color:#93c5fd;"
+              style="color:#2563eb;"
             >
               Open Maps
             </a>
@@ -1523,43 +1731,42 @@
         <div class="card">
           <h3>Nearest cities &amp; towns</h3>
           <ul class="list">
-            <li><strong>Blackpool</strong> – seaside town, about 25–30 minutes by train.
+            <li><strong>Blackpool</strong> – seaside town with beaches and attractions.
               <a
                 href="https://www.google.com/maps/place/Blackpool/"
                 target="_blank"
                 rel="noreferrer"
-                style="color:#93c5fd;"
+                style="color:#2563eb;"
               >
                 Map
               </a>
             </li>
-            <li><strong>Manchester</strong> – big city for jobs and shopping, around
-              40–50 minutes by train.
+            <li><strong>Manchester</strong> – large city with shopping, museums and jobs.
               <a
                 href="https://www.google.com/maps/place/Manchester/"
                 target="_blank"
                 rel="noreferrer"
-                style="color:#93c5fd;"
+                style="color:#2563eb;"
               >
                 Map
               </a>
             </li>
-            <li><strong>Lancaster</strong> – university town north of Preston.
+            <li><strong>Lancaster</strong> – historic city and university town north of Preston.
               <a
                 href="https://www.google.com/maps/place/Lancaster/"
                 target="_blank"
                 rel="noreferrer"
-                style="color:#93c5fd;"
+                style="color:#2563eb;"
               >
                 Map
               </a>
             </li>
-            <li><strong>Liverpool</strong> – port city reachable by train or car.
+            <li><strong>Liverpool</strong> – port city with waterfront, museums and music history.
               <a
                 href="https://www.google.com/maps/place/Liverpool/"
                 target="_blank"
                 rel="noreferrer"
-                style="color:#93c5fd;"
+                style="color:#2563eb;"
               >
                 Map
               </a>
@@ -1593,25 +1800,44 @@
       </div>
     </section>
 
-    <!-- EVENTS -->
-    <section id="events" class="reveal">
+    <!-- PLACES TO VISIT -->
+    <section id="visiting" class="reveal">
       <div class="section-heading">
-        <div class="section-label">Events</div>
-        <h2 class="section-title">Upcoming events</h2>
+        <div class="section-label">Nearby visits</div>
+        <h2 class="section-title">Places to visit around Preston</h2>
         <p class="section-subtitle">
-          Dashain, Tihar, Teej, Holi and other programmes can be announced here and in the group.
+          Some popular places around Preston that many students and families like to visit.
+          Always check opening times, ticket prices and travel options before you go.
         </p>
       </div>
 
-      <div class="card">
-        <h3>Current status</h3>
-        <p style="margin-top:4px;">
-          There are <strong>no upcoming events</strong> listed at the moment.
-        </p>
-        <p class="section-subtitle" style="margin-top:6px;">
-          When events are planned (festivals, sports, meetups, charity programmes), details such
-          as date, time and location will be added here and shared in the WhatsApp group.
-        </p>
+      <div class="two-grid">
+        <div class="card">
+          <h3>Nature &amp; outdoor</h3>
+          <ul class="list">
+            <li><strong>Brockholes Nature Reserve</strong> – large nature reserve with a
+              floating visitor village, walking routes and wildlife, just outside Preston.
+              <a href="https://www.google.com/maps/search/Brockholes+Nature+Reserve" target="_blank" rel="noreferrer" style="color:#2563eb;">Map</a>
+            </li>
+            <li><strong>Forest of Bowland AONB</strong> – scenic countryside for walks and views.
+              <a href="https://www.google.com/maps/search/Forest+of+Bowland" target="_blank" rel="noreferrer" style="color:#2563eb;">Map</a>
+            </li>
+            <li><strong>Lake District (Windermere area)</strong> – famous national park with lakes
+              and mountains, reachable by train or car for a day trip or weekend.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Seaside &amp; cities</h3>
+          <ul class="list">
+            <li><strong>Blackpool</strong> – beach, Blackpool Tower and seafront attractions.</li>
+            <li><strong>Southport</strong> – seaside town with long promenade and beach.</li>
+            <li><strong>Manchester &amp; Liverpool</strong> – big city days out for museums,
+              shopping and football matches.</li>
+          </ul>
+          <p class="section-subtitle" style="margin-top:6px;">
+            Members can share photos, tips and travel advice in the WhatsApp group after visiting.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -1689,37 +1915,36 @@
           <h3>समूहको बारेमा (नेपाली)</h3>
           <p>
             <strong>Nepalese in Preston (NIP)</strong> प्रेस्टन र आसपासमा बस्ने,
-            पढ्ने वा काम गर्ने नेपालीहरुको लागि बनाइएको एउटा सहयोगी समूह हो।
-            मुख्य उद्देश्य भनेको जागिर, बसोबास, स्थानीय जानकारी र आपतकालीन
-            अवस्थामा एक–अर्कालाई सहयोग गर्नु हो।
+            पढ्ने वा काम गर्ने नेपालीहरुको लागि बनाइएको सहयोगी समूह हो।
+            मुख्य उद्देश्य भनेको जागिर, बसोबास, स्थानीय जानकारी र
+            आवश्यकता परेको बेला एक–अर्कालाई साथ दिनु हो।
           </p>
           <ul class="list">
-            <li>सबैलाई सम्मान गर्नुहोस् – गालीगलौज, जातीय, लैङ्गिक भेदभाव नगर्नुहोस्।</li>
-            <li>समूहलाई मुख्यत: उपयोगी जानकारीका लागि प्रयोग गर्नुहोस्, अनावश्यक स्पाम लिंक नपठाउनुहोस्।</li>
-            <li>भिसा, कानुनी वा इमिग्रेसन सम्बन्धी कुरामा अन्तिम जानकारीका लागि
-              सधैं <strong>GOV.UK</strong> (अफिसियल UK सरकारको वेबसाइट) हेर्नुहोस्।</li>
-            <li>समूहमा समस्या आएमा कृपया एडमिन <strong>Prabin Mahato</strong> लाई
-              निजी सन्देश पठाउनुहोस्।</li>
+            <li>सबैलाई सम्मान गर्नुहोस् – गालीगलौज, जातीय वा लैङ्गिक भेदभाव नगर्नुहोस्।</li>
+            <li>समूहलाई मुख्यत: उपयोगी जानकारीका लागि प्रयोग गर्नुहोस्, अनावश्यक स्पाम नपठाउनुहोस्।</li>
+            <li>भिसा वा कानुनी सल्लाहको लागि अन्तिम जानकारी सधैं <strong>GOV.UK</strong> बाट हेर्नुहोस्।</li>
+            <li>समस्या आएमा कृपया एडमिन <strong>Prabin Mahato</strong> लाई निजी सन्देश पठाउनुहोस्।</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- USEFUL LINKS -->
+    <!-- USEFUL LINKS + SKILLS -->
     <section class="reveal">
       <div class="section-heading">
-        <div class="section-label">Helpful links</div>
-        <h2 class="section-title">Official websites &amp; local services</h2>
+        <div class="section-label">Helpful links &amp; skills</div>
+        <h2 class="section-title">Official websites and community skills</h2>
         <p class="section-subtitle">
-          Quick links you can tap to open in a new tab and share in the group.
+          Use these links for official information and see how community members can support each other.
         </p>
       </div>
+
       <div class="links-grid">
         <div class="card">
           <h3>Visas &amp; immigration</h3>
           <a class="link-chip" href="https://www.gov.uk/student-visa" target="_blank" rel="noreferrer">🎓 Student visa</a>
           <a class="link-chip" href="https://www.gov.uk/graduate-visa" target="_blank" rel="noreferrer">📄 Graduate visa</a>
-          <a class="link-chip" href="https://www.gov.uk/indefinite-leave-to-remain" target="_blank" rel="noreferrer">🏡 ILR</a>
+          <a class="link-chip" href="https://www.gov.uk/indefinite-leave-to-remain" target="_blank" rel="noreferrer">🏡 ILR (settlement)</a>
           <a class="link-chip" href="https://www.gov.uk/browse/visas-immigration" target="_blank" rel="noreferrer">🇬🇧 All visa types</a>
         </div>
         <div class="card">
@@ -1736,6 +1961,25 @@
           <a class="link-chip" href="https://www.stagecoachbus.com" target="_blank" rel="noreferrer">🚌 Bus info</a>
           <a class="link-chip" href="https://www.nationalrail.co.uk" target="_blank" rel="noreferrer">🚆 Train times</a>
         </div>
+      </div>
+
+      <div class="card" style="margin-top:12px;">
+        <h3>Skills and help from community members</h3>
+        <p>
+          Many Nepali students and workers in Preston are happy to help each other. You can introduce
+          yourself in the group and say what you can help with.
+        </p>
+        <div class="skills-list">
+          <div class="skill-pill">📝 CV &amp; job applications</div>
+          <div class="skill-pill">📄 Form filling &amp; GP registration</div>
+          <div class="skill-pill">✈️ Airport pickup / first week help</div>
+          <div class="skill-pill">🗣️ English conversation practice</div>
+          <div class="skill-pill">💻 Basic computer help</div>
+          <div class="skill-pill">🏡 Room / flat search tips</div>
+        </div>
+        <p class="section-subtitle" style="margin-top:6px;">
+          Please only offer help that you genuinely have time for and never promise anything you cannot do.
+        </p>
       </div>
     </section>
 
@@ -1793,12 +2037,21 @@
 
       <div class="two-grid">
         <div class="card">
-          <h3>Admin details</h3>
-          <p>
-            <strong>Admin:</strong> Prabin Mahato<br />
+          <div style="display:flex; gap:10px; align-items:center; margin-bottom:6px;">
+            <div style="width:54px;height:54px;border-radius:50%;overflow:hidden;border:2px solid var(--blue-soft);box-shadow:var(--shadow-md);flex-shrink:0;">
+              <img src="admin-profile.jpg" alt="Admin profile photo" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <div>
+              <h3 style="margin-bottom:2px;">Admin details</h3>
+              <div style="font-size:0.86rem;color:var(--text-muted);">
+                Admin: <strong>Prabin Mahato</strong><br/>
+                Group: Nepalese in Preston (NIP)
+              </div>
+            </div>
+          </div>
+          <p style="margin-top:4px;">
             <strong>Instagram:</strong>
-            <a href="https://instagram.com/Thynoox" target="_blank" rel="noreferrer">@Thynoox</a><br />
-            <strong>Group:</strong> Nepalese in Preston (NIP)
+            <a href="https://instagram.com/Thynoox" target="_blank" rel="noreferrer">@Thynoox</a>
           </p>
           <ul class="list">
             <li>Best way to contact: send a direct message on the WhatsApp group.</li>
@@ -1858,6 +2111,16 @@
   <button class="scroll-top" id="scrollTopBtn" type="button" aria-label="Back to top">↑</button>
 
   <script>
+    // dark mode preference
+    (function () {
+      const stored = localStorage.getItem("nip_theme");
+      if (stored === "dark") {
+        document.body.classList.add("dark");
+        const modeToggle = document.getElementById("modeToggle");
+        if (modeToggle) modeToggle.textContent = "☀️";
+      }
+    })();
+
     // mobile nav
     const navToggle = document.getElementById("navToggle");
     const navMobile = document.getElementById("navMobile");
@@ -1868,13 +2131,38 @@
       });
       navMobile.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", () => {
-          if (window.innerWidth < 780) navMobile.style.display = "none";
+          if (window.innerWidth < 820) navMobile.style.display = "none";
         });
+      });
+    }
+
+    // dark / light mode toggle
+    const modeToggle = document.getElementById("modeToggle");
+    if (modeToggle) {
+      modeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        const isDark = document.body.classList.contains("dark");
+        modeToggle.textContent = isDark ? "☀️" : "🌙";
+        localStorage.setItem("nip_theme", isDark ? "dark" : "light");
       });
     }
 
     // year in footer
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // announcement bar close
+    const announceBar = document.getElementById("announceBar");
+    const announceClose = announceBar ? announceBar.querySelector(".announce-close") : null;
+    if (announceBar && announceClose) {
+      const closed = localStorage.getItem("nip_announce_closed");
+      if (closed === "1") {
+        announceBar.style.display = "none";
+      }
+      announceClose.addEventListener("click", () => {
+        announceBar.style.display = "none";
+        localStorage.setItem("nip_announce_closed", "1");
+      });
+    }
 
     // info tab switcher
     const tabButtons = document.querySelectorAll(".info-tab-btn");
@@ -1903,14 +2191,13 @@
     const jobCards = document.querySelectorAll(".job-card");
 
     function filterJobs() {
-      const text = jobSearchInput.value.toLowerCase();
-      const activeFilter = document
-        .querySelector(".job-filter-btn.active")
-        .getAttribute("data-filter");
+      const text = (jobSearchInput.value || "").toLowerCase();
+      const activeBtn = document.querySelector(".job-filter-btn.active");
+      const activeFilter = activeBtn ? activeBtn.getAttribute("data-filter") : "all";
 
       jobCards.forEach((card) => {
         const category = card.getAttribute("data-category");
-        const dataText = card.getAttribute("data-text").toLowerCase();
+        const dataText = (card.getAttribute("data-text") || "").toLowerCase();
         const matchText = dataText.includes(text);
         const matchCategory =
           activeFilter === "all" || activeFilter === category;
@@ -1919,7 +2206,7 @@
       });
     }
 
-    jobSearchInput.addEventListener("input", filterJobs);
+    if (jobSearchInput) jobSearchInput.addEventListener("input", filterJobs);
     jobFilterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         jobFilterBtns.forEach((b) => b.classList.remove("active"));
@@ -1928,60 +2215,14 @@
       });
     });
 
-    // scroll to top button
+    // scroll to top button & active nav
     const scrollTopBtn = document.getElementById("scrollTopBtn");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 250) {
-        scrollTopBtn.style.display = "flex";
-      } else {
-        scrollTopBtn.style.display = "none";
-      }
-    });
-    scrollTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
-    // copy WhatsApp link buttons
-    const copyButtons = document.querySelectorAll(".copy-btn");
-    copyButtons.forEach((btn) => {
-      btn.addEventListener("click", async () => {
-        const link = btn.getAttribute("data-copy-link");
-        const original = btn.textContent;
-        try {
-          await navigator.clipboard.writeText(link);
-          btn.classList.add("copied");
-          btn.textContent = "✅ Link copied";
-        } catch (err) {
-          alert("Could not copy automatically. Link: " + link);
-        }
-        setTimeout(() => {
-          btn.classList.remove("copied");
-          btn.textContent = original;
-        }, 2000);
-      });
-    });
-
-    // announcement bar close (saved in localStorage)
-    const announceBar = document.getElementById("announceBar");
-    const announceClose = document.querySelector(".announce-close");
-    if (announceBar && announceClose) {
-      const closed = localStorage.getItem("nip_announce_closed");
-      if (closed === "1") {
-        announceBar.style.display = "none";
-      }
-      announceClose.addEventListener("click", () => {
-        announceBar.style.display = "none";
-        localStorage.setItem("nip_announce_closed", "1");
-      });
-    }
-
-    // active nav link on scroll
     const sections = document.querySelectorAll("main section[id]");
     const navLinksAll = document.querySelectorAll(".nav-links a, #navMobile a");
 
     function setActiveNav() {
       let currentId = "";
-      const scrollPos = window.scrollY + 120;
+      const scrollPos = window.scrollY + 130;
 
       sections.forEach((section) => {
         if (
@@ -2000,8 +2241,42 @@
       });
     }
 
-    window.addEventListener("scroll", setActiveNav);
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 250) {
+        scrollTopBtn.style.display = "flex";
+      } else {
+        scrollTopBtn.style.display = "none";
+      }
+      setActiveNav();
+    });
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
     setActiveNav();
+
+    // copy WhatsApp link buttons
+    const copyButtons = document.querySelectorAll(".copy-btn");
+    copyButtons.forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const link = btn.getAttribute("data-copy-link");
+        const originalText = btn.textContent;
+        try {
+          if (navigator.clipboard && link) {
+            await navigator.clipboard.writeText(link);
+            btn.classList.add("copied");
+            btn.textContent = "✅ Link copied";
+          } else {
+            alert("Copy not supported. Link: " + link);
+          }
+        } catch (err) {
+          alert("Could not copy automatically. Link: " + link);
+        }
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    });
 
     // scroll reveal animations
     const revealEls = document.querySelectorAll(".reveal");
@@ -2061,7 +2336,6 @@
       });
     });
 
-    // auto-rotate stories every 12 seconds
     setInterval(() => {
       nextStory(1);
     }, 12000);
@@ -2107,10 +2381,47 @@
         btn.classList.add("active");
 
         Object.keys(langPanels).forEach((key) => {
-          langPanels[key].classList.toggle("active", key === lang);
+          if (langPanels[key]) {
+            langPanels[key].classList.toggle("active", key === lang);
+          }
         });
       });
     });
+
+    // Part-time hours calculator
+    const hoursInput = document.getElementById("hoursPerWeek");
+    const rateInput = document.getElementById("hourlyRate");
+    const calcBtn = document.getElementById("calcBtn");
+    const calcResult = document.getElementById("calcResult");
+    const calcWarning = document.getElementById("calcWarning");
+
+    if (calcBtn) {
+      calcBtn.addEventListener("click", () => {
+        const hours = parseFloat(hoursInput.value || "0");
+        const rate = parseFloat(rateInput.value || "0");
+
+        if (isNaN(hours) || isNaN(rate) || hours < 0 || rate < 0) {
+          calcResult.textContent = "Please enter valid positive numbers for hours and pay.";
+          calcWarning.textContent = "";
+          return;
+        }
+
+        const weekly = hours * rate;
+        const weeklyRounded = weekly.toFixed(2);
+
+        calcResult.textContent = `Example weekly income: £${weeklyRounded} (before tax, if applicable).`;
+
+        if (hours > 20) {
+          calcWarning.textContent =
+            "⚠️ You entered more than 20 hours. If your visa has a 20-hour term time limit, you must stay within the official work limit shown on your visa and GOV.UK.";
+        } else if (hours > 0) {
+          calcWarning.textContent =
+            "✅ Hours entered are at or below 20. Always still check your exact visa conditions.";
+        } else {
+          calcWarning.textContent = "";
+        }
+      });
+    }
   </script>
 </body>
 </html>
