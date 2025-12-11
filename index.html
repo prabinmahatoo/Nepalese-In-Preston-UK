@@ -6,18 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Nepalese in Preston (NIP) – a community hub for Nepali people in Preston, UK. Jobs, accommodation, local information, events, student visa help and community support."
+    content="Nepalese in Preston (NIP) – a community hub for Nepali people in Preston, UK. Jobs, accommodation, local information, events and community support."
   />
-
   <style>
     :root {
       --bg: #020617;
-      --bg-alt: #020617;
-      --bg-soft: #020617;
+      --bg-soft: #0b1120;
       --accent: #2563eb;
       --accent-soft: #93c5fd;
       --accent-alt: #22c55e;
-      --accent-warm: #f97316;
       --text-main: #f9fafb;
       --text-muted: #9ca3af;
       --card-bg: #020617;
@@ -36,10 +33,8 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background:
-        radial-gradient(circle at top, #0f172a 0, #020617 40%, #000 100%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
       color: var(--text-main);
       line-height: 1.6;
       min-height: 100vh;
@@ -56,56 +51,13 @@
     }
 
     main {
-      padding-bottom: 80px;
+      padding-bottom: 64px;
     }
 
     .page {
-      max-width: 1180px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 12px clamp(14px, 4vw, 28px);
-    }
-
-    /* SMALL BACKGROUND DECOR */
-    .bg-orbit {
-      position: fixed;
-      inset: -200px;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .bg-orbit::before,
-    .bg-orbit::after {
-      content: "";
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 999px;
-      filter: blur(60px);
-      opacity: 0.3;
-      animation: floatGlow 22s ease-in-out infinite alternate;
-    }
-
-    .bg-orbit::before {
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.9), transparent);
-      top: -40px;
-      left: -80px;
-    }
-
-    .bg-orbit::after {
-      background: radial-gradient(circle, rgba(34, 197, 94, 0.9), transparent);
-      bottom: -40px;
-      right: -60px;
-      animation-delay: 6s;
-    }
-
-    @keyframes floatGlow {
-      0% {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      100% {
-        transform: translate3d(40px, -30px, 0) scale(1.08);
-      }
     }
 
     /* HEADER / NAV */
@@ -113,15 +65,16 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 40;
+      z-index: 20;
       backdrop-filter: blur(18px);
       background: linear-gradient(
           to bottom,
-          rgba(15, 23, 42, 0.98),
-          rgba(15, 23, 42, 0.86),
+          rgba(15, 23, 42, 0.96),
+          rgba(15, 23, 42, 0.75),
           transparent
-        );
-      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+        ),
+        transparent;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
     }
 
     .nav {
@@ -139,8 +92,8 @@
     }
 
     .brand-logo-wrap {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       overflow: hidden;
       background: #e5e7eb;
@@ -154,22 +107,11 @@
       object-fit: cover;
     }
 
-    .brand-text-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
     .brand-text {
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       font-size: 0.95rem;
       text-transform: uppercase;
-    }
-
-    .brand-sub {
-      font-size: 0.76rem;
-      color: var(--text-muted);
     }
 
     .nav-links {
@@ -182,29 +124,25 @@
     .nav-links a {
       position: relative;
       padding-bottom: 2px;
-      padding-inline: 6px;
-      border-radius: 999px;
     }
 
     .nav-links a::after {
       content: "";
       position: absolute;
-      left: 8px;
+      left: 0;
       bottom: 0;
       width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(to right, #2563eb, #22c55e);
+      height: 1px;
+      background: linear-gradient(to right, #2563eb, #38bdf8);
       transition: width 180ms ease-out;
     }
 
     .nav-links a:hover {
       color: var(--text-main);
-      background: rgba(15, 23, 42, 0.7);
     }
 
     .nav-links a:hover::after {
-      width: calc(100% - 16px);
+      width: 100%;
     }
 
     .nav-toggle {
@@ -231,7 +169,7 @@
       padding: 8px 10px 10px;
       border-radius: var(--radius-md);
       border: 1px solid rgba(148, 163, 184, 0.4);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       background: radial-gradient(circle at top, #020617 0, #020617 60%);
     }
 
@@ -245,7 +183,7 @@
       color: var(--text-main);
     }
 
-    @media (min-width: 820px) {
+    @media (min-width: 780px) {
       .nav-links {
         display: flex;
       }
@@ -254,20 +192,19 @@
       }
     }
 
-    /* UTILITY BAR: TIME + WEATHER */
+    /* NEW: UTILITY BAR (TIME + WEATHER) */
 
     .utility-bar {
-      margin-bottom: 8px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      align-items: center;
+      padding-bottom: 6px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
       justify-content: space-between;
     }
 
-    .utility-pill-row {
+    .util-pill-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -278,43 +215,37 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 8px;
+      padding: 4px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
       white-space: nowrap;
     }
 
     .util-pill span.icon {
-      font-size: 0.95rem;
-    }
-
-    .util-pill strong {
-      font-weight: 600;
+      font-size: 0.9rem;
     }
 
     .util-link {
       color: var(--accent-soft);
       text-decoration: underline;
-      text-decoration-style: dotted;
       text-underline-offset: 2px;
     }
 
     /* HERO */
 
     .hero {
-      margin-top: 10px;
+      margin-top: 12px;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 22px;
-      align-items: stretch;
-      position: relative;
+      gap: 18px;
+      align-items: center;
     }
 
-    @media (min-width: 960px) {
+    @media (min-width: 900px) {
       .hero {
         grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-        gap: 28px;
+        gap: 26px;
       }
     }
 
@@ -322,19 +253,14 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 4px 11px;
+      padding: 4px 10px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(248, 250, 252, 0.22);
-      background: radial-gradient(
-        circle at left,
-        rgba(37, 99, 235, 0.35),
-        transparent
-      );
+      border: 1px solid rgba(248, 250, 252, 0.25);
+      background: radial-gradient(circle at left, rgba(37, 99, 235, 0.4), transparent);
       font-size: 0.75rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--accent-soft);
-      animation: fadeInUp 700ms ease-out both;
     }
 
     .tag-dot {
@@ -362,20 +288,14 @@
     }
 
     .hero-title {
-      font-size: clamp(2.2rem, 3.2vw + 1.2rem, 3.1rem);
+      font-size: clamp(2rem, 3.1vw + 1.2rem, 2.7rem);
       letter-spacing: -0.04em;
       line-height: 1.1;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .hero-title span {
-      background: linear-gradient(
-        90deg,
-        #60a5fa,
-        #22c55e,
-        #f97316,
-        #38bdf8
-      );
+      background: linear-gradient(to right, #2563eb, #38bdf8);
       -webkit-background-clip: text;
       color: transparent;
     }
@@ -383,8 +303,7 @@
     .hero-subtitle {
       font-size: 0.98rem;
       color: var(--text-muted);
-      margin-top: 8px;
-      max-width: 38rem;
+      margin-top: 6px;
     }
 
     .hero-subtitle strong {
@@ -411,7 +330,6 @@
       gap: 8px;
       transition: 160ms ease-out;
       text-decoration: none;
-      white-space: nowrap;
     }
 
     .btn-primary {
@@ -421,12 +339,11 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-1px) translateZ(0);
-      box-shadow: 0 22px 45px rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
     }
 
     .btn-ghost {
-      background: rgba(15, 23, 42, 0.96);
+      background: rgba(15, 23, 42, 0.95);
       color: var(--text-main);
       border-color: rgba(148, 163, 184, 0.6);
     }
@@ -435,7 +352,7 @@
       background: #020617;
     }
 
-    @media (min-width: 520px) {
+    @media (min-width: 480px) {
       .hero-cta {
         flex-direction: row;
         flex-wrap: wrap;
@@ -445,7 +362,7 @@
       }
     }
 
-    @media (max-width: 519px) {
+    @media (max-width: 479px) {
       .btn {
         width: 100%;
       }
@@ -457,17 +374,13 @@
       gap: 10px;
       font-size: 0.8rem;
       color: var(--text-muted);
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .hero-meta span {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.35);
     }
 
     .hero-meta-dot {
@@ -477,64 +390,31 @@
       background: var(--accent);
     }
 
-    .hero-right {
-      position: relative;
-      min-height: 260px;
-    }
-
-    .hero-card-wrap {
+    .hero-image-card {
       border-radius: 22px;
       border: 1px solid var(--border-subtle);
-      background: radial-gradient(circle at top, #020617 0, #020617 65%);
+      background: radial-gradient(circle at top, #111827 0, #020617 70%);
       padding: 14px;
       box-shadow: var(--shadow-soft);
+      margin-top: 4px;
       font-size: 0.9rem;
       color: var(--text-muted);
-      position: relative;
-      overflow: hidden;
-      height: 100%;
-    }
-
-    .hero-image-card {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      height: 100%;
-    }
-
-    .hero-photo-wrap {
-      border-radius: 18px;
-      overflow: hidden;
-      position: relative;
-      isolation: isolate;
-    }
-
-    .hero-photo-wrap::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(15, 23, 42, 0.6),
-        transparent 55%
-      );
-      pointer-events: none;
     }
 
     .hero-image-card img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-      transform: scale(1.05);
-      animation: floatZoom 20s ease-in-out infinite alternate;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      transform: scale(1.03);
+      transform-origin: center center;
+      animation: floatHero 18s ease-in-out infinite alternate;
     }
 
-    @keyframes floatZoom {
+    @keyframes floatHero {
       0% {
-        transform: scale(1.05) translate3d(0, 4px, 0);
+        transform: scale(1.03) translateY(2px);
       }
       100% {
-        transform: scale(1.12) translate3d(0, -6px, 0);
+        transform: scale(1.08) translateY(-4px);
       }
     }
 
@@ -542,69 +422,10 @@
       color: var(--accent-soft);
     }
 
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
-      font-size: 0.78rem;
-    }
-
-    .hero-badge {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-badge span {
-      font-size: 0.95rem;
-    }
-
-    /* ADMIN PROFILE PILL */
-
-    .admin-mini {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 10px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.95);
-      font-size: 0.8rem;
-    }
-
-    .admin-mini-avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 999px;
-      overflow: hidden;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-    }
-
-    .admin-mini-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .admin-mini-main {
-      font-weight: 600;
-    }
-
-    .admin-mini-sub {
-      color: var(--accent-soft);
-      font-size: 0.78rem;
-    }
-
     /* SECTIONS */
 
     section {
-      margin-top: 30px;
+      margin-top: 28px;
     }
 
     .section-heading {
@@ -616,13 +437,13 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--accent-soft);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .section-title {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       letter-spacing: -0.03em;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .section-subtitle {
@@ -642,22 +463,10 @@
       }
     }
 
-    .three-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-    }
-
-    @media (min-width: 960px) {
-      .three-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
     .card {
       border-radius: var(--radius-lg);
       border: 1px solid var(--border-subtle);
-      background: radial-gradient(circle at top, #020617 0, #020617 70%);
+      background: var(--card-bg);
       padding: 12px 14px;
       box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
       font-size: 0.9rem;
@@ -690,10 +499,6 @@
       font-size: 0.78rem;
       margin-top: 6px;
       color: var(--accent-soft);
-    }
-
-    .tag-pill span {
-      font-size: 1rem;
     }
 
     /* INFO TABS */
@@ -738,57 +543,12 @@
       display: block;
     }
 
-    /* QUICK LINKS */
-
-    .quick-links-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 8px;
-      margin-top: 10px;
-      font-size: 0.84rem;
-    }
-
-    @media (min-width: 680px) {
-      .quick-links-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    .quick-link {
-      border-radius: 999px;
-      padding: 6px 10px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      background: rgba(15, 23, 42, 0.95);
-    }
-
-    .quick-link-left {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .quick-link span.icon {
-      font-size: 1rem;
-    }
-
-    .quick-link a {
-      color: var(--accent-soft);
-      font-weight: 500;
-      font-size: 0.82rem;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
     /* WARNING / RULES */
 
     .warning-card {
       border-radius: var(--radius-lg);
       border: 1px solid rgba(239, 68, 68, 0.7);
-      background: rgba(127, 29, 29, 0.95);
+      background: rgba(127, 29, 29, 0.9);
       padding: 12px 14px;
       box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
       font-size: 0.9rem;
@@ -826,20 +586,12 @@
       box-shadow: 0 12px 32px rgba(15, 23, 42, 0.9);
       font-size: 0.82rem;
       color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
     }
 
     .img-card img {
       width: 100%;
       height: 150px;
       object-fit: cover;
-      transform: scale(1.04);
-      transition: transform 0.6s ease-out;
-    }
-
-    .img-card:hover img {
-      transform: scale(1.1);
     }
 
     .img-card-body {
@@ -934,58 +686,6 @@
       margin-top: 2px;
     }
 
-    /* IMMIGRATION / VISA SECTION */
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .pill {
-      border-radius: 999px;
-      padding: 3px 8px;
-      font-size: 0.78rem;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--accent-soft);
-    }
-
-    .visa-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    @media (min-width: 960px) {
-      .visa-grid {
-        grid-template-columns: 1.1fr 0.9fr;
-      }
-    }
-
-    .stat-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-      font-size: 0.82rem;
-    }
-
-    .stat-pill {
-      border-radius: 999px;
-      padding: 6px 10px;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .stat-pill strong {
-      font-size: 0.9rem;
-    }
-
     /* FAQ */
 
     .faq-list details {
@@ -1022,7 +722,7 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 14px 30px rgba(15, 23, 42, 0.9);
-      z-index: 50;
+      z-index: 30;
     }
 
     .float-wa span {
@@ -1032,7 +732,7 @@
     .scroll-top {
       position: fixed;
       right: 14px;
-      bottom: 74px;
+      bottom: 72px;
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -1043,13 +743,13 @@
       justify-content: center;
       font-size: 1.3rem;
       color: var(--text-main);
-      z-index: 50;
+      z-index: 30;
       cursor: pointer;
     }
 
     footer {
       border-top: 1px solid rgba(148, 163, 184, 0.25);
-      margin-top: 28px;
+      margin-top: 26px;
       padding-top: 10px;
       font-size: 0.78rem;
       color: var(--text-muted);
@@ -1069,35 +769,98 @@
       }
     }
 
-    /* ANIMATIONS */
+    /* NEW: VISA SECTION SMALL STYLES */
 
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translate3d(0, 10px, 0);
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 0.78rem;
+    }
+
+    .pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: var(--accent-soft);
+    }
+
+    /* NEW: TOOLS / CALCULATOR */
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    @media (min-width: 780px) {
+      .tool-grid {
+        grid-template-columns: 1.1fr 0.9fr;
       }
-      100% {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-      }
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .calc-field {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.86rem;
+    }
+
+    .calc-field label {
+      flex: 1;
+    }
+
+    .calc-field input {
+      width: 120px;
+      padding: 5px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+      font-size: 0.86rem;
+      text-align: right;
+    }
+
+    .calc-btn {
+      margin-top: 8px;
+      border-radius: var(--radius-pill);
+      padding: 7px 12px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: rgba(15, 23, 42, 0.98);
+      color: var(--text-main);
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+
+    .calc-btn:hover {
+      background: #020617;
+    }
+
+    .calc-result {
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: var(--accent-soft);
     }
   </style>
 </head>
 <body>
-  <div class="bg-orbit"></div>
-
   <header>
     <div class="page">
       <nav class="nav">
         <div class="brand">
           <div class="brand-logo-wrap">
-            <!-- Replace with your real logo -->
             <img src="nip-logo.png" alt="Nepalese in Preston (NIP) logo" />
           </div>
-          <div class="brand-text-wrap">
-            <div class="brand-text">Nepalese in Preston (NIP)</div>
-            <div class="brand-sub">Community hub · Preston, UK</div>
-          </div>
+          <div class="brand-text">Nepalese in Preston (NIP)</div>
         </div>
 
         <div class="nav-links">
@@ -1105,7 +868,8 @@
           <a href="#info">Info Centre</a>
           <a href="#job-board">Job Board</a>
           <a href="#preston">About Preston</a>
-          <a href="#immigration">Student & Visa Help</a>
+          <a href="#immigration">Visa &amp; Student Info</a>
+          <a href="#tools">Tools</a>
           <a href="#events">Events</a>
           <a href="#faq">FAQ</a>
           <a href="#rules">Rules</a>
@@ -1122,30 +886,27 @@
         <a href="#info">Info Centre</a>
         <a href="#job-board">Job Board</a>
         <a href="#preston">About Preston</a>
-        <a href="#immigration">Student &amp; Visa Help</a>
+        <a href="#immigration">Visa &amp; Student Info</a>
+        <a href="#tools">Tools</a>
         <a href="#events">Events</a>
         <a href="#faq">FAQ</a>
         <a href="#rules">Rules</a>
         <a href="#contact">Contact</a>
       </div>
 
-      <!-- Utility bar -->
+      <!-- NEW: time + weather bar -->
       <div class="utility-bar">
-        <div class="utility-pill-row">
-          <div class="util-pill">
-            <span class="icon">📍</span>
-            <span><strong>Preston</strong>, United Kingdom</span>
-          </div>
+        <div class="util-pill-row">
           <div class="util-pill">
             <span class="icon">🕒</span>
-            <span>Local time: <strong id="localTime">--:--:--</strong></span>
+            <span>Local time in Preston: <strong id="localTime">--:--:--</strong></span>
           </div>
           <div class="util-pill">
-            <span class="icon">🌦️</span>
+            <span class="icon">🌦</span>
             <span id="weatherSummary">Loading weather…</span>
           </div>
         </div>
-        <div class="utility-pill-row">
+        <div class="util-pill-row">
           <span class="util-pill">
             <span class="icon">🔗</span>
             <a
@@ -1153,9 +914,7 @@
               href="https://www.gov.uk"
               target="_blank"
               rel="noreferrer"
-            >
-              GOV.UK official info
-            </a>
+            >Official GOV.UK</a>
           </span>
         </div>
       </div>
@@ -1163,7 +922,7 @@
   </header>
 
   <main class="page">
-    <!-- HOME / HERO -->
+    <!-- HOME -->
     <section id="home" class="hero">
       <div>
         <div class="tagline">
@@ -1174,10 +933,9 @@
           Welcome to <span>Nepalese in Preston (NIP)</span>
         </h1>
         <p class="hero-subtitle">
-          This community has been created to bring together Nepali individuals
-          living in Preston, UK. Our aim is to build a strong, supportive
-          network where we help each other with
-          <strong>jobs, accommodation, local information, student issues and
+          This community has been created to bring together Nepali individuals living
+          in Preston, UK. Our aim is to build a strong, supportive network where we
+          help each other with <strong>jobs, accommodation, local information and
           community support</strong>.
         </p>
 
@@ -1196,71 +954,24 @@
         </div>
 
         <div class="hero-meta">
-          <span>
-            <span class="hero-meta-dot"></span>
-            Admin: <strong>Prabin Mahato</strong>
-          </span>
+          <span><span class="hero-meta-dot"></span> Admin: Prabin Mahato</span>
+          <span>Location: Preston, United Kingdom</span>
           <span>Language: Nepali &amp; English</span>
-          <span>Platform: WhatsApp group &amp; this website</span>
-        </div>
-
-        <div class="admin-mini">
-          <div class="admin-mini-avatar">
-            <!-- Replace with your admin profile photo -->
-            <img src="admin-profile.jpg" alt="Admin profile photo" />
-          </div>
-          <div>
-            <div class="admin-mini-main">Admin: Prabin Mahato</div>
-            <div class="admin-mini-sub">Instagram: @Thynoox</div>
-          </div>
         </div>
       </div>
 
-      <aside class="hero-right">
-        <div class="hero-card-wrap hero-image-card">
-          <div class="hero-photo-wrap">
-            <!-- Replace with HD Preston / community image -->
-            <img
-              src="preston-town.jpg"
-              alt="Preston city and community (example HD photo)"
-            />
-          </div>
-          <div>
-            <strong>What this group is for</strong>
-            <p style="margin-top:4px;">
-              Whether you are new to Preston or have been here for years, NIP is
-              here to:
-            </p>
-            <ul class="list">
-              <li>Share job opportunities and application tips.</li>
-              <li>Help find rooms, flats and housemates.</li>
-              <li>
-                Provide local information (transport, shopping, healthcare and
-                more).
-              </li>
-              <li>Offer community support, especially in emergencies.</li>
-              <li>
-                Share updates on <strong>student visa, Graduate (PSW) route,
-                ILR and eVisa</strong> from official sources.
-              </li>
-            </ul>
-
-            <div class="hero-badges">
-              <div class="hero-badge">
-                <span>🎓</span>
-                <span>Student &amp; PSW guidance (info only)</span>
-              </div>
-              <div class="hero-badge">
-                <span>⚕️</span>
-                <span>NHS, GP &amp; emergency info</span>
-              </div>
-              <div class="hero-badge">
-                <span>🏡</span>
-                <span>Jobs &amp; accommodation sharing</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <aside class="hero-image-card">
+        <img src="jobs.jpg" alt="Community and work in Preston (example photo)" />
+        <strong>What this group is for</strong>
+        <p style="margin-top:4px;">
+          Whether you are new to Preston or have been here for years, NIP is here to:
+        </p>
+        <ul class="list">
+          <li>Share job opportunities and application tips.</li>
+          <li>Help find rooms, flats and housemates.</li>
+          <li>Provide local information (transport, shopping, healthcare and more).</li>
+          <li>Offer community support, especially in emergencies.</li>
+        </ul>
       </aside>
     </section>
 
@@ -1270,8 +981,8 @@
         <div class="section-label">Information centre</div>
         <h2 class="section-title">Practical information for living in Preston</h2>
         <p class="section-subtitle">
-          Tap an option below to read detailed guidance. This is not official
-          advice, but a simple community guide to help Nepali members.
+          Tap an option below to read detailed guidance. This is not official advice,
+          but a simple community guide to help Nepali members.
         </p>
       </div>
 
@@ -1298,36 +1009,20 @@
         <div id="panel-jobs" class="info-panel active">
           <h3>Finding jobs in Preston</h3>
           <ul class="list">
-            <li>
-              <strong>Online job sites:</strong> Use UK job websites (Indeed,
-              Reed, Totaljobs, LinkedIn). Search with keywords like
-              <em>Preston</em>, <em>warehouse</em>, <em>care assistant</em>,
-              <em>kitchen staff</em>, etc.
-            </li>
-            <li>
-              <strong>CV &amp; cover letter:</strong> Prepare an English CV with
-              UK phone number, address, work history and references. Keep it
-              simple and clear.
-            </li>
-            <li>
-              <strong>Walk-in applications:</strong> Some restaurants, shops and
-              warehouses accept CVs directly. Always be polite and ask if they
-              are hiring.
-            </li>
-            <li>
-              <strong>Agencies:</strong> Recruitment agencies can help with
-              warehouse, care and hospitality jobs. Members can share trusted
-              agencies in the group.
-            </li>
-            <li>
-              <strong>Group help:</strong> In the WhatsApp group, members can
-              share: job links, referrals, interview tips and warnings about bad
-              employers.
-            </li>
+            <li><strong>Online job sites:</strong> Use UK job websites (Indeed, Reed, Totaljobs,
+              LinkedIn). Search with keywords like <em>Preston</em>, <em>warehouse</em>,
+              <em>care assistant</em>, <em>kitchen staff</em>, etc.</li>
+            <li><strong>CV &amp; cover letter:</strong> Prepare an English CV with UK phone
+              number, address, work history and references. Keep it simple and clear.</li>
+            <li><strong>Walk-in applications:</strong> Some restaurants, shops and
+              warehouses accept CVs directly. Always be polite and ask if they are hiring.</li>
+            <li><strong>Agencies:</strong> Recruitment agencies can help with warehouse,
+              care and hospitality jobs. Members can share trusted agencies in the group.</li>
+            <li><strong>Group help:</strong> In the WhatsApp group, members can share:
+              job links, referrals, interview tips and warnings about bad employers.</li>
           </ul>
           <p class="section-subtitle" style="margin-top:6px;">
-            Always check that offers are genuine. Never pay money just to apply
-            for a job.
+            Always check that offers are genuine. Never pay money just to apply for a job.
           </p>
         </div>
 
@@ -1335,35 +1030,20 @@
         <div id="panel-medical" class="info-panel">
           <h3>Medical system &amp; GP registration (NHS)</h3>
           <ul class="list">
-            <li>
-              <strong>Register with a GP:</strong> Find a local GP (doctor’s
-              clinic) near your address. Every person should be registered with
-              one GP practice.
-            </li>
-            <li>
-              <strong>Documents usually needed:</strong> ID (passport/BRP),
-              proof of address (tenancy agreement, bill or bank letter). Some
-              GPs accept new patients online.
-            </li>
-            <li>
-              <strong>Appointments:</strong> For non-emergency issues, call
-              your GP or use their website to book a routine appointment or
-              telephone consultation.
-            </li>
-            <li>
-              <strong>Urgent help:</strong> For urgent but not
-              life-threatening issues, call NHS 111 or use 111 online. For
-              emergencies (life in danger) call 999.
-            </li>
-            <li>
-              <strong>Prescriptions:</strong> After doctor consultation, you may
-              receive a prescription to collect medicine from a pharmacy
-              (charges may apply).
-            </li>
+            <li><strong>Register with a GP:</strong> Find a local GP (doctor’s clinic) near your
+              address. Every person should be registered with one GP practice.</li>
+            <li><strong>Documents usually needed:</strong> ID (passport/BRP), proof of address
+              (tenancy agreement, bill or bank letter). Some GPs accept new patients online.</li>
+            <li><strong>Appointments:</strong> For non-emergency issues, call your GP or use their
+              website to book a routine appointment or telephone consultation.</li>
+            <li><strong>Urgent help:</strong> For urgent but not life-threatening issues, call
+              NHS 111 or use 111 online. For emergencies (life in danger) call 999.</li>
+            <li><strong>Prescriptions:</strong> After doctor consultation, you may receive a
+              prescription to collect medicine from a pharmacy (charges may apply).</li>
           </ul>
           <p class="section-subtitle" style="margin-top:6px;">
-            Members can share which GP surgeries are accepting new patients and
-            their experience with local hospitals, dentists and pharmacies.
+            Members can share which GP surgeries are accepting new patients and their experience
+            with local hospitals, dentists and pharmacies.
           </p>
         </div>
 
@@ -1371,31 +1051,16 @@
         <div id="panel-bank" class="info-panel">
           <h3>Opening a bank account</h3>
           <ul class="list">
-            <li>
-              <strong>Choose a bank:</strong> Common options include high street
-              banks (e.g. Barclays, NatWest, Santander) and online banks (e.g.
-              Monzo, Starling).
-            </li>
-            <li>
-              <strong>Basic documents:</strong> Usually need ID (passport/BRP)
-              and proof of address (tenancy agreement, bill, employer or
-              university letter).
-            </li>
-            <li>
-              <strong>How to apply:</strong> Many banks allow account opening
-              through their mobile app. Others require an appointment at a local
-              branch.
-            </li>
-            <li>
-              <strong>Check fees:</strong> Look at card type, international
-              transfer costs, and if the account is free or has monthly
-              charges.
-            </li>
-            <li>
-              <strong>Safety:</strong> Never share your PIN or one-time codes in
-              WhatsApp or with strangers. Bank staff will never ask for full
-              passwords by phone.
-            </li>
+            <li><strong>Choose a bank:</strong> Common options include high street banks
+              (e.g. Barclays, NatWest, Santander) and online banks (e.g. Monzo, Starling).</li>
+            <li><strong>Basic documents:</strong> Usually need ID (passport/BRP) and proof of
+              address (tenancy agreement, bill, employer or university letter).</li>
+            <li><strong>How to apply:</strong> Many banks allow account opening through their
+              mobile app. Others require an appointment at a local branch.</li>
+            <li><strong>Check fees:</strong> Look at card type, international transfer costs,
+              and if the account is free or has monthly charges.</li>
+            <li><strong>Safety:</strong> Never share your PIN or one-time codes in WhatsApp
+              or with strangers. Bank staff will never ask for full passwords by phone.</li>
           </ul>
         </div>
 
@@ -1403,29 +1068,16 @@
         <div id="panel-sim" class="info-panel">
           <h3>Buying a SIM card &amp; mobile plan</h3>
           <ul class="list">
-            <li>
-              <strong>Main networks:</strong> EE, O2, Vodafone, Three and
-              others. Supermarkets often sell SIMs (Tesco, ASDA, Aldi etc).
-            </li>
-            <li>
-              <strong>Pay-as-you-go vs contract:</strong> Pay-as-you-go is
-              flexible with no long contract. Monthly contract gives more data
-              but may require credit check.
-            </li>
-            <li>
-              <strong>What to check:</strong> Coverage in your area, data
-              allowance, minutes for UK calls and international call options to
-              Nepal.
-            </li>
-            <li>
-              <strong>Registration:</strong> Some SIMs require an app or website
-              registration. Keep your UK address and ID ready.
-            </li>
-            <li>
-              <strong>Community help:</strong> Members can share which networks
-              work best in different parts of Preston and which bundles are good
-              value.
-            </li>
+            <li><strong>Main networks:</strong> EE, O2, Vodafone, Three and others. Supermarkets
+              often sell SIMs (Tesco, ASDA, Aldi etc).</li>
+            <li><strong>Pay-as-you-go vs contract:</strong> Pay-as-you-go is flexible with no
+              long contract. Monthly contract gives more data but may require credit check.</li>
+            <li><strong>What to check:</strong> Coverage in your area, data allowance, minutes
+              for UK calls and international call options to Nepal.</li>
+            <li><strong>Registration:</strong> Some SIMs require an app or website registration.
+              Keep your UK address and ID ready.</li>
+            <li><strong>Community help:</strong> Members can share which networks work best
+              in different parts of Preston and which bundles are good value.</li>
           </ul>
         </div>
 
@@ -1433,75 +1085,20 @@
         <div id="panel-other" class="info-panel">
           <h3>Other important information for new arrivals</h3>
           <ul class="list">
-            <li>
-              <strong>National Insurance Number (NIN):</strong> For most jobs
-              you need a National Insurance number. You can apply online on
-              GOV.UK if you live in the UK, have the right to work and are
-              working, looking for work or have a job offer.:contentReference[oaicite:1]{index=1}
+            <li><strong>National Insurance Number:</strong> Needed for most jobs. You normally
+              apply online on GOV.UK if you live in the UK, have the right to work and are
+              working, looking for work or have a job offer. You can usually start work before
+              receiving your number if you can prove your right to work.
             </li>
-            <li>
-              <strong>Emergency numbers:</strong> 999 for emergency, 101 for
-              non-emergency police, 111 for medical advice, 0800 numbers are
-              usually free from mobiles.
-            </li>
-            <li>
-              <strong>Documents safety:</strong> Keep passport, BRP and
-              contracts in a safe place. Take photos or scans for backup.
-            </li>
-            <li>
-              <strong>Scam awareness:</strong> Be careful with calls or messages
-              asking for money or personal information. If unsure, ask the group
-              before acting.
-            </li>
-            <li>
-              <strong>Language support:</strong> Many organisations offer
-              translation help. Nepali friends in the group can also help
-              explain things in simple language.
-            </li>
+            <li><strong>Emergency numbers:</strong> 999 for emergency, 101 for non-emergency police,
+              111 for medical advice, 0800 numbers are usually free from mobiles.</li>
+            <li><strong>Documents safety:</strong> Keep passport, BRP and contracts in a safe
+              place. Take photos or scans for backup.</li>
+            <li><strong>Scam awareness:</strong> Be careful with calls or messages asking for
+              money or personal information. If unsure, ask the group before acting.</li>
+            <li><strong>Language support:</strong> Many organisations offer translation help.
+              Nepali friends in the group can also help explain things in simple language.</li>
           </ul>
-        </div>
-
-        <!-- QUICK LINKS row -->
-        <div class="quick-links-grid">
-          <div class="quick-link">
-            <div class="quick-link-left">
-              <span class="icon">🌐</span>
-              <span>Student visa (official GOV.UK)</span>
-            </div>
-            <a
-              href="https://www.gov.uk/student-visa"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open
-            </a>
-          </div>
-          <div class="quick-link">
-            <div class="quick-link-left">
-              <span class="icon">🎓</span>
-              <span>Graduate visa (PSW) – GOV.UK</span>
-            </div>
-            <a
-              href="https://www.gov.uk/graduate-visa"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open
-            </a>
-          </div>
-          <div class="quick-link">
-            <div class="quick-link-left">
-              <span class="icon">🛂</span>
-              <span>eVisa &amp; share code – GOV.UK</span>
-            </div>
-            <a
-              href="https://www.gov.uk/evisa"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open
-            </a>
-          </div>
         </div>
       </div>
     </section>
@@ -1512,8 +1109,8 @@
         <div class="section-label">Job board</div>
         <h2 class="section-title">Sample job board for Nepalese in Preston</h2>
         <p class="section-subtitle">
-          This is a simple demo job board. Admin can edit this page and replace
-          sample jobs with real opportunities for members.
+          This is a simple demo job board. Admin can edit this page and replace sample jobs
+          with real opportunities for members.
         </p>
       </div>
 
@@ -1527,120 +1124,87 @@
             />
           </div>
           <button class="job-filter-btn active" data-filter="all">All</button>
-          <button class="job-filter-btn" data-filter="hospitality">
-            Hospitality
-          </button>
-          <button class="job-filter-btn" data-filter="warehouse">
-            Warehouse
-          </button>
+          <button class="job-filter-btn" data-filter="hospitality">Hospitality</button>
+          <button class="job-filter-btn" data-filter="warehouse">Warehouse</button>
           <button class="job-filter-btn" data-filter="care">Care</button>
           <button class="job-filter-btn" data-filter="other">Other</button>
         </div>
 
         <div id="jobList" class="job-list">
-          <article
-            class="job-card"
-            data-category="hospitality"
-            data-text="restaurant waiter city centre evening"
-          >
+          <article class="job-card" data-category="hospitality" data-text="restaurant waiter city centre evening">
             <div class="job-header">
               <div class="job-title">Restaurant Waiter / Waitress</div>
               <div class="job-tag">Hospitality</div>
             </div>
-            <div class="job-meta">
-              Preston City Centre · Part-time evenings
-            </div>
+            <div class="job-meta">Preston City Centre · Part-time evenings</div>
             <p class="section-subtitle">
-              Busy Nepali/Asian style restaurant looking for friendly staff.
-              Experience helpful but training provided. Share CV in person or
-              via email link (to be added).
+              Busy Nepali/Asian style restaurant looking for friendly staff. Experience helpful
+              but training provided. Share CV in person or via email link (to be added).
             </p>
           </article>
 
-          <article
-            class="job-card"
-            data-category="warehouse"
-            data-text="warehouse picker packer bamber bridge full time"
-          >
+          <article class="job-card" data-category="warehouse" data-text="warehouse picker packer bamber bridge full time">
             <div class="job-header">
               <div class="job-title">Warehouse Picker / Packer</div>
               <div class="job-tag">Warehouse</div>
             </div>
             <div class="job-meta">Bamber Bridge · Full-time</div>
             <p class="section-subtitle">
-              Physical role in warehouse environment (lifting, packing,
-              scanning). Agency or company link can be shared by members.
+              Physical role in warehouse environment (lifting, packing, scanning). Agency or
+              company link can be shared by members.
             </p>
           </article>
 
-          <article
-            class="job-card"
-            data-category="care"
-            data-text="care assistant preston community nights"
-          >
+          <article class="job-card" data-category="care" data-text="care assistant preston community nights">
             <div class="job-header">
               <div class="job-title">Care Assistant (community)</div>
               <div class="job-tag">Care</div>
             </div>
             <div class="job-meta">Preston area · Day / night shifts</div>
             <p class="section-subtitle">
-              Supporting elderly or vulnerable adults with daily tasks. Driving
-              licence may be useful. Training usually offered.
+              Supporting elderly or vulnerable adults with daily tasks. Driving licence may be
+              useful. Training usually offered.
             </p>
           </article>
 
-          <article
-            class="job-card"
-            data-category="other"
-            data-text="cleaning staff school early morning"
-          >
+          <article class="job-card" data-category="other" data-text="cleaning staff school early morning">
             <div class="job-header">
               <div class="job-title">Cleaning Staff (School)</div>
               <div class="job-tag">Other</div>
             </div>
             <div class="job-meta">Preston · Early mornings</div>
             <p class="section-subtitle">
-              Part-time cleaning job before school opens. Good for people
-              wanting extra income.
+              Part-time cleaning job before school opens. Good for people wanting extra income.
             </p>
           </article>
         </div>
 
         <p class="section-subtitle" style="margin-top:8px;">
-          Note: These are example listings only. For real jobs, admin or members
-          can edit this section and add direct links and contact details.
+          Note: These are example listings only. For real jobs, admin or members can edit this
+          section and add direct links and contact details.
         </p>
       </div>
     </section>
 
-    <!-- PRESTON / NEARBY -->
+    <!-- PRESTON / HISTORY / NEARBY -->
     <section id="preston">
       <div class="section-heading">
         <div class="section-label">Preston &amp; nearby areas</div>
-        <h2 class="section-title">About Preston and nearby visiting places</h2>
+        <h2 class="section-title">About Preston and surrounding cities</h2>
       </div>
 
       <div class="two-grid">
         <div class="card">
           <h3>Preston – quick overview</h3>
           <p>
-            Preston is a city in Lancashire, North West England. It has a mix
-            of students, families and workers from many countries, including a
-            growing Nepali community.
+            Preston is a city in Lancashire, North West England. It has a mix of students,
+            families and workers from many countries, including a growing Nepali community.
           </p>
           <ul class="list">
             <li>Home to the University of Central Lancashire (UCLan).</li>
-            <li>
-              Good transport links by train and bus to Manchester, Blackpool,
-              Lancaster and more.
-            </li>
-            <li>
-              Shops in the city centre, Fishergate and Deepdale Retail Park.
-            </li>
-            <li>
-              Parks and open spaces such as Avenham Park and Moor Park along
-              the River Ribble.:contentReference[oaicite:2]{index=2}
-            </li>
+            <li>Good transport links by train and bus to Manchester, Blackpool and beyond.</li>
+            <li>Shops in the city centre, Fishergate and Deepdale Retail Park.</li>
+            <li>Parks and open spaces such as Avenham Park and Moor Park.</li>
           </ul>
           <p class="section-subtitle" style="margin-top:6px;">
             📍 View Preston on Google Maps:
@@ -1656,334 +1220,250 @@
         </div>
 
         <div class="card">
-          <h3>Nearest cities &amp; towns (easy trips)</h3>
+          <h3>Nearest cities &amp; towns</h3>
           <ul class="list">
-            <li>
-              <strong>Blackpool</strong> – seaside town, about 25–30 minutes by
-              train. Famous for the seafront and Blackpool Tower.
+            <li><strong>Blackpool</strong> – seaside town, about 25–30 minutes by train.
+              <a
+                href="https://www.google.com/maps/place/Blackpool/"
+                target="_blank"
+                rel="noreferrer"
+                style="color:#93c5fd;"
+              >
+                Map
+              </a>
             </li>
-            <li>
-              <strong>Manchester</strong> – big city for jobs and shopping,
-              around 40–50 minutes by train.
+            <li><strong>Manchester</strong> – big city for jobs and shopping, around
+              40–50 minutes by train.
+              <a
+                href="https://www.google.com/maps/place/Manchester/"
+                target="_blank"
+                rel="noreferrer"
+                style="color:#93c5fd;"
+              >
+                Map
+              </a>
             </li>
-            <li>
-              <strong>Lancaster</strong> – university town north of Preston with
-              a historic castle and river walks.
+            <li><strong>Lancaster</strong> – university town north of Preston.
+              <a
+                href="https://www.google.com/maps/place/Lancaster/"
+                target="_blank"
+                rel="noreferrer"
+                style="color:#93c5fd;"
+              >
+                Map
+              </a>
             </li>
-            <li>
-              <strong>Liverpool</strong> – port city with museums and docks,
-              reachable by train or car (around 1–1.5 hours).
+            <li><strong>Liverpool</strong> – port city reachable by train or car.
+              <a
+                href="https://www.google.com/maps/place/Liverpool/"
+                target="_blank"
+                rel="noreferrer"
+                style="color:#93c5fd;"
+              >
+                Map
+              </a>
             </li>
           </ul>
           <p class="section-subtitle" style="margin-top:6px;">
-            Members can share travel tips, cheap tickets, and nice places to
-            visit on weekends.
+            Members can share travel tips, cheap tickets, and nice places to visit on weekends.
           </p>
-        </div>
-      </div>
-
-      <!-- NEAREST VISITING PLACES CARDS -->
-      <div class="three-grid" style="margin-top:14px;">
-        <div class="card">
-          <h3>Within Preston city</h3>
-          <ul class="list">
-            <li>
-              <strong>The Harris</strong> – free museum, art gallery and
-              library on the Flag Market, now a cultural hub after a major
-              refurbishment.:contentReference[oaicite:3]{index=3}
-            </li>
-            <li>
-              <strong>Avenham &amp; Miller Park</strong> – riverside parks with
-              walking paths and city views.:contentReference[oaicite:4]{index=4}
-            </li>
-            <li>
-              <strong>Winckley Square</strong> – historic Georgian square with
-              green space, close to the city centre.:contentReference[oaicite:5]{index=5}
-            </li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Nature &amp; countryside nearby</h3>
-          <ul class="list">
-            <li>
-              <strong>Brockholes Nature Reserve</strong> – wetland and woodland
-              reserve just off the M6, popular for walks and wildlife.:contentReference[oaicite:6]{index=6}
-            </li>
-            <li>
-              <strong>Samlesbury Hall</strong> – historic hall with gardens and
-              local history, a short drive from Preston.:contentReference[oaicite:7]{index=7}
-            </li>
-            <li>
-              <strong>Lake District (South Lakes)</strong> – about 1.5 hours by
-              car or train connections; good for day trips to Windermere and
-              nearby towns.:contentReference[oaicite:8]{index=8}
-            </li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Coastal &amp; seaside trips</h3>
-          <ul class="list">
-            <li>
-              <strong>Lytham St Annes</strong> – quieter seaside area south of
-              Blackpool, popular for walks and family days out.:contentReference[oaicite:9]{index=9}
-            </li>
-            <li>
-              <strong>Blackpool seafront</strong> – rides, beach, and the famous
-              illuminations in season. Easy by train or bus.
-            </li>
-            <li>
-              <strong>Southport</strong> – another coastal town reachable by
-              train via Preston or Wigan (nice for a relaxed day out).
-            </li>
-          </ul>
         </div>
       </div>
 
       <div class="image-grid">
         <div class="img-card">
-          <img
-            src="preston-town.jpg"
-            alt="Preston city centre (example photo)"
-          />
+          <img src="preston-town.jpg" alt="Preston city view (example photo)" />
           <div class="img-card-body">
-            Preston city centre – you can replace this with your own HD photo
-            for a more local feel.
+            Preston city centre – you can replace this with your own photo for a more local feel.
           </div>
         </div>
         <div class="img-card">
-          <img
-            src="community-event.jpg"
-            alt="Community gathering (example photo)"
-          />
+          <img src="community-event.jpg" alt="Community gathering (example photo)" />
           <div class="img-card-body">
-            Community events, festivals and meetups help keep our Nepali culture
-            alive.
+            Community events, festivals and meetups help keep our Nepali culture alive.
           </div>
         </div>
         <div class="img-card">
           <img src="jobs.jpg" alt="Work and opportunities (example photo)" />
           <div class="img-card-body">
-            Many members come for study and work – we can share opportunities
-            and support.
+            Many members come for study and work – we can share opportunities and support.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- IMMIGRATION / VISA / NIN / EVISA -->
+    <!-- NEW: IMMIGRATION / VISA INFO -->
     <section id="immigration">
       <div class="section-heading">
-        <div class="section-label">Student &amp; immigration info</div>
-        <h2 class="section-title">Student visa, PSW (Graduate), ILR &amp; status</h2>
+        <div class="section-label">Visa &amp; student info</div>
+        <h2 class="section-title">Student visa, Graduate route (PSW), ILR &amp; status</h2>
         <p class="section-subtitle">
-          This section gives a simple overview for Nepali students and workers.
-          It is based on official guidance as available in 2025, but
-          <strong>rules can change</strong>. Always double-check on
-          <a
-            href="https://www.gov.uk"
-            target="_blank"
-            rel="noreferrer"
-            style="color:#93c5fd;"
-          >GOV.UK</a>
-          or with a qualified adviser before making any decision.
+          Simple overview for Nepali students and workers. Rules can change – always read full
+          guidance on <a href="https://www.gov.uk" target="_blank" rel="noreferrer" style="color:#93c5fd;">GOV.UK</a>
+          or speak to a qualified adviser before taking decisions.
         </p>
       </div>
 
-      <div class="visa-grid">
+      <div class="two-grid">
         <div class="card">
-          <h3>1) Student visa (for study in the UK)</h3>
+          <h3>Student visa – main points (GOV.UK)</h3>
           <ul class="list">
-            <li>
-              You usually need an offer from a licensed sponsor (for example
-              UCLan) and a Confirmation of Acceptance for Studies (CAS).:contentReference[oaicite:10]{index=10}
+            <li>You apply for a <strong>Student visa</strong> if you are 16+ and want to study
+              at a licensed college/university (for example UCLan). The university issues a
+              CAS (Confirmation of Acceptance for Studies).
             </li>
-            <li>
-              You must meet financial requirements and English language
-              requirements set in the Immigration Rules.
+            <li>You must show tuition &amp; living cost funds and usually meet an English
+              language requirement.</li>
+            <li><strong>Work during term time:</strong> most full-time degree level students
+              at universities can work up to <strong>20 hours per week in term-time</strong>,
+              and full-time in vacations, but your exact conditions are printed on your visa
+              and explained by your university.
             </li>
-            <li>
-              <strong>Work during studies:</strong> On most
-              <em>full-time degree-level</em> courses at a recognised
-              university, students can usually work up to
-              <strong>20 hours per week in term-time</strong> and full-time in
-              vacations, but your visa and university guidance will confirm your
-              exact conditions.:contentReference[oaicite:11]{index=11}
-            </li>
-            <li>
-              You cannot claim most public funds/benefits and you cannot work as
-              a professional sportsperson.:contentReference[oaicite:12]{index=12}
-            </li>
-            <li>
-              From 2024 onwards, most new students on taught courses cannot
-              bring dependants unless on a postgraduate research programme (check
-              GOV.UK for the latest change).
+            <li>You cannot claim most public funds and there are limits on self-employment or
+              working as a professional sportsperson.
             </li>
           </ul>
-
           <div class="pill-row">
-            <span class="pill">📜 Source: GOV.UK – Student visa</span>
-            <span class="pill">🎓 UCLan students can also check university guidance</span>
-          </div>
-
-          <div class="stat-row">
-            <div class="stat-pill">
-              <span>🧑‍🎓</span>
-              <span>Keep BRP/eVisa details and CAS safe.</span>
-            </div>
-            <div class="stat-pill">
-              <span>📄</span>
-              <span>Print or save a copy of your visa conditions.</span>
-            </div>
+            <span class="pill">🌐 GOV.UK: “Student visa”</span>
           </div>
         </div>
 
         <div class="card">
-          <h3>2) Graduate visa (Post-study work, “PSW”)</h3>
+          <h3>Graduate visa (PSW) – after your course</h3>
           <ul class="list">
-            <li>
-              After successfully completing an eligible UK degree on a Student
-              visa with a sponsor that has a track record of compliance, you may
-              be able to apply for a
-              <strong>Graduate visa</strong>.:contentReference[oaicite:13]{index=13}
+            <li>If you successfully complete an eligible UK course on a Student visa with an
+              eligible sponsor, you may be able to apply for a <strong>Graduate visa</strong>
+              (often called “post-study work” or PSW).
             </li>
-            <li>
-              As of late 2025, GOV.UK explains that the Graduate visa normally
-              lets you stay for up to <strong>2 years</strong> (3 years for
-              PhD/doctoral graduates), during which you can work or look for
-              work at most skill levels.:contentReference[oaicite:14]{index=14}
+            <li>As of 2025, this usually allows up to <strong>2 years</strong> stay (3 years
+              for PhD/doctoral graduates) to work or look for work at most skill levels.
             </li>
-            <li>
-              You must usually apply from inside the UK, after your university
-              has told the Home Office that you have successfully completed your
-              course.
+            <li>The UK government has announced that for many graduates the route will reduce
+              to about <strong>18 months from 2027</strong>, so students finishing after that
+              date should carefully check the latest rules before applying.
             </li>
-            <li>
-              You cannot extend the Graduate visa, but you might later switch to
-              another visa, for example a Skilled Worker visa, if you meet the
-              requirements.:contentReference[oaicite:15]{index=15}
-            </li>
-            <li>
-              The UK government has reviewed this route and may adjust the
-              length or conditions in the future, so always read the latest
-              official rules before applying.
+            <li>You cannot extend a Graduate visa, but you may be able to switch into another
+              route such as Skilled Worker if you meet the requirements.
             </li>
           </ul>
           <div class="pill-row">
-            <span class="pill">🧾 Fee &amp; IHS apply – see GOV.UK for latest cost.</span>
-            <span class="pill">⚠️ Rules can change – check before you apply.</span>
+            <span class="pill">🎓 GOV.UK: “Graduate visa”</span>
           </div>
         </div>
       </div>
 
-      <div class="visa-grid" style="margin-top:12px;">
+      <div class="two-grid" style="margin-top:12px;">
         <div class="card">
-          <h3>3) Indefinite Leave to Remain (ILR – settlement)</h3>
+          <h3>ILR &amp; 10-year long residence (settlement)</h3>
           <ul class="list">
-            <li>
-              <strong>ILR</strong> is also called <em>settlement</em>. It lets
-              you live, work and study in the UK without time limit and is
-              normally needed if you want to apply for British citizenship.:contentReference[oaicite:16]{index=16}
+            <li><strong>Indefinite Leave to Remain (ILR)</strong> is also called settlement.
+              It lets you live, work and study in the UK without time limit and is often needed
+              before applying for British citizenship.
             </li>
-            <li>
-              Many work visa routes (for example Skilled Worker) give an option
-              to apply for ILR after usually <strong>5 years</strong> of
-              continuous residence if you meet salary, absence and other
-              conditions.:contentReference[oaicite:17]{index=17}
+            <li>Many people qualify under a <strong>10-year “long residence” route</strong>
+              if they have been in the UK lawfully and continuously for 10 years on different
+              types of permission.
             </li>
-            <li>
-              There is also a <strong>10-year “long residence” route</strong>
-              for people who have had continuous lawful residence in the UK for
-              10 years under various visas.:contentReference[oaicite:18]{index=18}
+            <li>The government has announced changes so that for many routes the “baseline”
+              time for settlement will be around 10 years, but there will be exceptions – so
+              always check the current rule for your visa type when you are close to applying.
             </li>
-            <li>
-              Most applicants aged 18–65 must pass the
-              <strong>Life in the UK test</strong> and meet an English language
-              requirement.
-            </li>
-            <li>
-              There have been discussions about changing qualifying periods in
-              future, but you should rely on the current rules on GOV.UK when
-              you apply.
-            </li>
+            <li>Most applicants aged 18–65 must pass the <strong>Life in the UK test</strong>
+              and meet an English language requirement.</li>
           </ul>
           <div class="pill-row">
-            <span class="pill">🏡 Goal: more secure long-term stay in the UK.</span>
-            <span class="pill">📚 Life in the UK test &amp; English required for most.</span>
+            <span class="pill">🏡 GOV.UK: “Indefinite leave to remain”</span>
           </div>
         </div>
 
         <div class="card">
-          <h3>4) eVisa, share code &amp; proving your status</h3>
+          <h3>eVisa, share code &amp; proving your status</h3>
           <ul class="list">
-            <li>
-              The UK is moving to a digital system called an
-              <strong>eVisa</strong>. Your status is held online instead of a
-              physical vignette or BRP card.:contentReference[oaicite:19]{index=19}
+            <li>The UK is moving to digital <strong>eVisas</strong>. Your immigration status
+              is stored online instead of only on a BRP or vignette.</li>
+            <li>You can <strong>view your status</strong> and create a temporary
+              <strong>share code</strong> to prove your right to work, rent or get services
+              using the official “View and prove your immigration status” service.
             </li>
-            <li>
-              You can view your eVisa and <strong>get a share code</strong> to
-              prove your right to work, rent or travel using the official
-              “View and prove your immigration status” service on GOV.UK.:contentReference[oaicite:20]{index=20}
-            </li>
-            <li>
-              Employers and landlords can check your status online using the
-              share code and your date of birth. The code normally expires after
-              90 days.
-            </li>
-            <li>
-              Keep your email, phone number and passport details up to date in
-              your UKVI account so that your eVisa matches your current
-              document.
-            </li>
-            <li>
-              If you have any technical problems or cannot access your eVisa,
-              use the helpline details given on GOV.UK or ask a trusted adviser
-              for help.
-            </li>
+            <li>Employers and landlords check the code online. A share code usually expires
+              after a short time, so generate a fresh one when needed.</li>
+            <li>Keep your UKVI account up to date with your new passport number, email and
+              phone so your eVisa matches your travel document.</li>
           </ul>
           <div class="pill-row">
-            <span class="pill">🧾 Service: “View and prove your immigration status”.</span>
-            <span class="pill">📱 Always use the official GOV.UK link.</span>
+            <span class="pill">🛂 GOV.UK: “View and prove your immigration status”</span>
           </div>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:12px;">
-        <h3>5) National Insurance Number (NIN) &amp; work</h3>
-        <ul class="list">
-          <li>
-            You normally need a <strong>National Insurance number</strong> if
-            you live in the UK, have the right to work and are working, looking
-            for work or have a job offer.:contentReference[oaicite:21]{index=21}
-          </li>
-          <li>
-            You apply <strong>online</strong> through GOV.UK and prove your
-            identity (for example using a passport or national ID card).:contentReference[oaicite:22]{index=22}
-          </li>
-          <li>
-            You can usually <strong>start work before receiving</strong> your
-            NIN if you can prove your right to work in the UK, but you should
-            apply as soon as possible.:contentReference[oaicite:23]{index=23}
-          </li>
-          <li>
-            If you already have a NIN (for example printed on your BRP or from
-            when you were younger) you do not need a new one – it is the same
-            for life.
-          </li>
-        </ul>
-        <div class="pill-row">
-          <span class="pill">💻 Search: “Apply for a National Insurance number – GOV.UK”.</span>
         </div>
       </div>
 
       <p class="section-subtitle" style="margin-top:8px;">
-        ❗ This section is only a <strong>summary</strong>. For your own
-        situation (visa change, refusal, appeal, complex history) please always
-        read the full guidance on GOV.UK and get professional immigration advice
-        if needed.
+        ⚠ This website only gives a simple summary in everyday language. For your own case
+        (visa change, refusal, complex history) always check official GOV.UK pages and get
+        professional immigration advice if needed.
       </p>
+    </section>
+
+    <!-- NEW: TOOLS / CALCULATOR -->
+    <section id="tools">
+      <div class="section-heading">
+        <div class="section-label">Tools</div>
+        <h2 class="section-title">Simple budget calculator for Preston</h2>
+        <p class="section-subtitle">
+          Quickly estimate your basic monthly living cost (for example as a student or worker)
+          and see the weekly amount.
+        </p>
+      </div>
+
+      <div class="card tool-grid">
+        <div>
+          <h3>Monthly expense calculator (approximate)</h3>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label for="calcRent">Rent (room / flat) £ / month</label>
+              <input id="calcRent" type="number" min="0" step="1" placeholder="0" />
+            </div>
+            <div class="calc-field">
+              <label for="calcBills">Bills (gas, electricity, wifi) £ / month</label>
+              <input id="calcBills" type="number" min="0" step="1" placeholder="0" />
+            </div>
+            <div class="calc-field">
+              <label for="calcFood">Food &amp; groceries £ / month</label>
+              <input id="calcFood" type="number" min="0" step="1" placeholder="0" />
+            </div>
+            <div class="calc-field">
+              <label for="calcTravel">Travel (bus, train, taxi) £ / month</label>
+              <input id="calcTravel" type="number" min="0" step="1" placeholder="0" />
+            </div>
+            <div class="calc-field">
+              <label for="calcOther">Other (phone, clothes, etc.) £ / month</label>
+              <input id="calcOther" type="number" min="0" step="1" placeholder="0" />
+            </div>
+          </div>
+          <button class="calc-btn" id="calcBtn">Calculate total</button>
+          <div class="calc-result" id="calcResult">
+            Monthly total: £0 · Weekly approx: £0
+          </div>
+          <p class="section-subtitle" style="margin-top:6px;">
+            This is only a rough estimate to help you plan. Actual costs depend on your
+            lifestyle and accommodation.
+          </p>
+        </div>
+
+        <div>
+          <h3>Checklist ideas for new arrivals</h3>
+          <ul class="list">
+            <li>✅ Register with GP and dentist.</li>
+            <li>✅ Open a UK bank account.</li>
+            <li>✅ Apply for National Insurance number (if working or looking for work).</li>
+            <li>✅ Save copies of passport, BRP/eVisa and tenancy agreement.</li>
+            <li>✅ Learn local bus routes and nearest supermarkets.</li>
+          </ul>
+          <p class="section-subtitle" style="margin-top:6px;">
+            You can also use this section to note your own monthly targets (for example
+            “save £50 per month for emergency fund”).
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- EVENTS -->
@@ -1992,8 +1472,7 @@
         <div class="section-label">Events</div>
         <h2 class="section-title">Upcoming events</h2>
         <p class="section-subtitle">
-          Dashain, Tihar, Teej, Holi and other programmes can be announced here
-          and in the group.
+          Dashain, Tihar, Teej, Holi and other programmes can be announced here and in the group.
         </p>
       </div>
 
@@ -2003,9 +1482,8 @@
           There are <strong>no upcoming events</strong> listed at the moment.
         </p>
         <p class="section-subtitle" style="margin-top:6px;">
-          When events are planned (festivals, sports, meetups, charity
-          programmes), details such as date, time and location will be added
-          here and shared in the WhatsApp group.
+          When events are planned (festivals, sports, meetups, charity programmes), details such
+          as date, time and location will be added here and shared in the WhatsApp group.
         </p>
       </div>
     </section>
@@ -2021,33 +1499,29 @@
         <details>
           <summary>Who can join the Nepalese in Preston (NIP) WhatsApp group?</summary>
           <p>
-            Mainly Nepalese people living, working or studying in Preston and
-            nearby areas. Friends of the Nepali community who want to support
-            respectfully are also welcome.
+            Mainly Nepalese people living, working or studying in Preston and nearby areas.
+            Friends of the Nepali community who want to support respectfully are also welcome.
           </p>
         </details>
         <details>
           <summary>Can I promote my business or YouTube/TikTok channel?</summary>
           <p>
-            Only if it is clearly useful for the community and not spammy.
-            Repeated promotion, unrelated links or clickbait are not allowed.
-            Ask the admin first if unsure.
+            Only if it is clearly useful for the community and not spammy. Repeated promotion,
+            unrelated links or clickbait are not allowed. Ask the admin first if unsure.
           </p>
         </details>
         <details>
           <summary>How do I report abuse or problems in the group?</summary>
           <p>
-            Take a screenshot and contact the admin (<strong>Prabin
-            Mahato</strong>) directly in private message. Do not start fights
-            in the group; let the admin handle it.
+            Take a screenshot and contact the admin (Prabin Mahato) directly in private message.
+            Do not start fights in the group; let the admin handle it.
           </p>
         </details>
         <details>
           <summary>Is the information on this website official advice?</summary>
           <p>
-            No. This is a community-made guide based on shared experience. For
-            legal, visa or medical issues always check official UK government or
-            NHS websites.
+            No. This is a community-made guide based on shared experience. For legal, visa or
+            medical issues always check official UK government or NHS websites.
           </p>
         </details>
       </div>
@@ -2066,33 +1540,20 @@
       <div class="warning-card">
         <h3>⚠️ Important community warning</h3>
         <ul class="list">
-          <li>
-            <strong>No abuse or harassment:</strong> No swearing, insulting,
-            bullying, personal attacks or targeting any person, caste, gender,
-            religion or nationality.
-          </li>
-          <li>
-            <strong>No unnecessary or unrelated links:</strong> Do not share
-            spam links, random TikTok/Reels, promotions, betting/loan apps or
-            any suspicious websites.
-          </li>
-          <li>
-            <strong>No hate speech or harassment in private messages:</strong>
-            If any member abuses or harasses others in DM, admin can remove them
-            from the group.
-          </li>
-          <li>
-            <strong>No fake news or scams:</strong> Only share information you
-            believe is true. If you are not sure, ask first.
-          </li>
-          <li>
-            <strong>No adult or offensive content:</strong> This group is
-            community friendly; such content is strictly banned.
-          </li>
+          <li><strong>No abuse or harassment:</strong> No swearing, insulting, bullying,
+            personal attacks or targeting any person, caste, gender, religion or nationality.</li>
+          <li><strong>No unnecessary or unrelated links:</strong> Do not share spam links,
+            random TikTok/Reels, promotions, betting/loan apps or any suspicious websites.</li>
+          <li><strong>No hate speech or harassment in private messages:</strong> If any
+            member abuses or harasses others in DM, admin can remove them from the group.</li>
+          <li><strong>No fake news or scams:</strong> Only share information you believe is
+            true. If you are not sure, ask first.</li>
+          <li><strong>No adult or offensive content:</strong> This group is community
+            friendly; such content is strictly banned.</li>
         </ul>
         <p style="margin-top:6px; font-size:0.86rem;">
-          🚫 Members who break these rules may receive a warning, temporary mute
-          or <strong>permanent removal</strong> from the group by the admin.
+          🚫 Members who break these rules may receive a warning, temporary mute or
+          <strong>permanent removal</strong> from the group by the admin.
         </p>
       </div>
 
@@ -2113,59 +1574,31 @@
         <div class="section-label">Contact</div>
         <h2 class="section-title">Admin &amp; group contact</h2>
         <p class="section-subtitle">
-          If you have any concerns, questions or suggestions about the group,
-          you can contact the admin directly.
+          If you have any concerns, questions or suggestions about the group, you can
+          contact the admin directly.
         </p>
       </div>
 
       <div class="two-grid">
         <div class="card">
           <h3>Admin details</h3>
-          <div style="display:flex; align-items:center; gap:10px; margin-top:4px;">
-            <div
-              style="
-                width:60px;
-                height:60px;
-                border-radius:999px;
-                overflow:hidden;
-                border:2px solid rgba(148,163,184,0.7);
-              "
-            >
-              <!-- Replace with admin HD profile photo -->
-              <img src="admin-profile.jpg" alt="Admin profile" />
-            </div>
-            <div>
-              <p>
-                <strong>Admin:</strong> Prabin Mahato<br />
-                <strong>Group:</strong> Nepalese in Preston (NIP)
-              </p>
-              <p style="font-size:0.85rem; color:var(--accent-soft); margin-top:2px;">
-                Instagram: <strong>@Thynoox</strong>
-              </p>
-            </div>
-          </div>
-
+          <p>
+            <strong>Admin:</strong> Prabin Mahato<br />
+            <strong>Group:</strong> Nepalese in Preston (NIP)
+          </p>
           <ul class="list">
-            <li>
-              Best way to contact: send a direct message on the WhatsApp group.
-            </li>
-            <li>
-              You can also reach out for help regarding group misuse or
-              conflicts.
-            </li>
+            <li>Best way to contact: send a direct message on the WhatsApp group.</li>
+            <li>You can also reach out for help regarding group misuse or conflicts.</li>
           </ul>
-          <div class="tag-pill">
-            <span>👨‍💼</span>
-            Admin tries to keep the group safe and fair for everyone.
-          </div>
+          <div class="tag-pill">👨‍💼 Admin tries to keep the group safe and fair for everyone.</div>
+          <p class="section-subtitle" style="margin-top:6px;">
+            Instagram: <strong>@Thynoox</strong> (for community-related messages only).
+          </p>
         </div>
 
         <div class="card">
           <h3>Join or share the group</h3>
-          <p>
-            Use the button below to join or share the invite link with other
-            Nepalese in Preston:
-          </p>
+          <p>Use the button below to join or share the invite link with other Nepalese in Preston:</p>
           <a
             class="btn btn-primary"
             href="https://chat.whatsapp.com/GyWHyPIHNbH6XWyRVmy4dd"
@@ -2175,10 +1608,7 @@
           >
             🔗 Join / Share WhatsApp Group
           </a>
-          <p
-            class="section-subtitle"
-            style="margin-top:8px; word-break:break-all;"
-          >
+          <p class="section-subtitle" style="margin-top:8px; word-break:break-all;">
             Group invite link:<br />
             https://chat.whatsapp.com/GyWHyPIHNbH6XWyRVmy4dd
           </p>
@@ -2190,13 +1620,9 @@
   <footer>
     <div class="page footer-inner">
       <div>
-        © <span id="year"></span> Nepalese in Preston (NIP) · Admin:
-        <strong>Prabin Mahato</strong>
+        © <span id="year"></span> Nepalese in Preston (NIP) · Admin: Prabin Mahato
       </div>
-      <div>
-        This website is an informal community hub created to support Nepalese in
-        Preston, UK. Always check GOV.UK or NHS for official information.
-      </div>
+      <div>This website is an informal community hub created to support Nepalese in Preston, UK.</div>
     </div>
   </footer>
 
@@ -2223,7 +1649,7 @@
       });
       navMobile.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", () => {
-          if (window.innerWidth < 820) navMobile.style.display = "none";
+          if (window.innerWidth < 780) navMobile.style.display = "none";
         });
       });
     }
@@ -2296,7 +1722,7 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // live local time (UK time / Preston)
+    // live local time (UK / Preston)
     const timeEl = document.getElementById("localTime");
     function updateTime() {
       const now = new Date();
@@ -2309,14 +1735,13 @@
           second: "2-digit",
         });
       } catch (e) {
-        // Fallback if timeZone not supported
         timeEl.textContent = now.toLocaleTimeString("en-GB");
       }
     }
     updateTime();
     setInterval(updateTime, 1000);
 
-    // simple mapping from Open-Meteo weather codes to text
+    // simple mapping for Open-Meteo weather codes
     function mapWeatherCode(code) {
       const groups = {
         clear: [0],
@@ -2341,12 +1766,11 @@
       return "Weather info";
     }
 
-    // live weather for Preston using Open-Meteo (no API key)
+    // live weather for Preston using Open-Meteo (no key needed)
     const weatherEl = document.getElementById("weatherSummary");
     async function loadWeather() {
       if (!weatherEl) return;
       try {
-        // Approx coordinates for Preston, Lancashire
         const url =
           "https://api.open-meteo.com/v1/forecast?latitude=53.76&longitude=-2.70&current=temperature_2m,weather_code";
         const res = await fetch(url);
@@ -2356,12 +1780,36 @@
         const temp = Math.round(data.current.temperature_2m);
         const code = data.current.weather_code;
         const desc = mapWeatherCode(code);
-        weatherEl.textContent = `${temp}°C, ${desc}`;
+        weatherEl.textContent = temp + "°C, " + desc;
       } catch (err) {
         weatherEl.textContent = "Weather unavailable";
       }
     }
     loadWeather();
+
+    // budget calculator
+    const calcBtn = document.getElementById("calcBtn");
+    const calcResult = document.getElementById("calcResult");
+    function toNumber(value) {
+      const n = parseFloat(value);
+      return isNaN(n) ? 0 : n;
+    }
+    if (calcBtn && calcResult) {
+      calcBtn.addEventListener("click", () => {
+        const rent = toNumber(document.getElementById("calcRent").value);
+        const bills = toNumber(document.getElementById("calcBills").value);
+        const food = toNumber(document.getElementById("calcFood").value);
+        const travel = toNumber(document.getElementById("calcTravel").value);
+        const other = toNumber(document.getElementById("calcOther").value);
+        const monthly = rent + bills + food + travel + other;
+        const weekly = monthly / 4.345; // approx weeks per month
+        calcResult.textContent =
+          "Monthly total: £" +
+          monthly.toFixed(0) +
+          " · Weekly approx: £" +
+          weekly.toFixed(0);
+      });
+    }
   </script>
 </body>
 </html>
